@@ -79,9 +79,13 @@ class CropDiseasePredictor:
             self.model = tf.keras.models.load_model(self.model_path)
             self.interpreter = None
 
-        # Load class list from train directory
+        # Load class list from classes.json, falling back to train directory
+        classes_json = crop_weights_dir / "classes.json"
         train_dir = PROJECT_ROOT / "datasets" / "model" / self.crop / "train"
-        if train_dir.exists():
+        if classes_json.exists():
+            with open(classes_json, "r", encoding="utf-8") as f:
+                self.class_names = json.load(f)
+        elif train_dir.exists():
             self.class_names = sorted([d.name for d in train_dir.iterdir() if d.is_dir()])
         else:
             self.class_names = [f"{self.crop}_class_{i}" for i in range(10)]
@@ -97,7 +101,7 @@ class CropDiseasePredictor:
             raise ValueError(f"Unsupported image input type: {type(image_input)}")
 
         img = img.resize(IMG_SIZE)
-        img_array = np.array(img, dtype=np.float32) / 255.0
+        img_array = np.array(img, dtype=np.float32)
         return np.expand_dims(img_array, axis=0)
 
     def predict(self, image_input: Union[str, Path, Image.Image, np.ndarray]) -> Dict[str, Any]:

@@ -118,5 +118,5 @@ class ImageProcessor:
         target_size: Tuple[int, int] = settings.IMAGE_INPUT_SIZE,
     ) -> np.ndarray:
         resized = image.resize(target_size, Image.Resampling.BILINEAR)
-        arr = np.array(resized, dtype=np.float32) / 255.0
+        arr = np.array(resized, dtype=np.float32)
         return np.expand_dims(arr, axis=0)

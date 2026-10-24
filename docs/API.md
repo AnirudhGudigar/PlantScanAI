@@ -31,6 +31,7 @@ The **PlantScan AI Backend** provides high-performance, modular endpoints for cr
 | `POST` | `/api/v1/predict/json` | Diagnose plant disease from Base64 encoded JSON string |
 | `GET` | `/api/v1/treatments/crops` | List all supported crop species |
 | `GET` | `/api/v1/treatments/classes` | List all canonical disease and healthy class keys |
+| `GET` | `/api/v1/treatments/languages` | List supported localization language codes (`en`, `hi`, `kn`) |
 | `GET` | `/api/v1/treatments/{crop}/{disease}` | Query IPM treatment protocol for a specific disease |
 
 ---

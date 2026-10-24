@@ -86,3 +86,47 @@ def test_get_treatment_endpoint_not_found(client: TestClient):
     data = response.json()
     assert data["status"] == "error"
     assert data["error_code"] == "TREATMENT_NOT_FOUND"
+
+
+def test_multilingual_repository_support():
+    repo = TreatmentRepository()
+    languages = repo.list_supported_languages()
+    assert "en" in languages
+    assert "kn" in languages
+    assert "hi" in languages
+
+    kn = repo.get_translation("kn")
+    assert "disclaimers" in kn
+    assert "general_disclaimer" in kn["disclaimers"]
+    assert "crops" in kn
+    assert kn["crops"]["Tomato"] == "ಟೊಮೆಟೊ"
+
+    hi = repo.get_translation("hi")
+    assert "disclaimers" in hi
+    assert hi["crops"]["Tomato"] == "टमाटर"
+
+
+def test_list_languages_endpoint(client: TestClient):
+    response = client.get("/api/v1/treatments/languages")
+    assert response.status_code == 200
+    langs = response.json()
+    assert isinstance(langs, list)
+    assert "en" in langs
+    assert "kn" in langs
+    assert "hi" in langs
+
+
+def test_get_treatment_localized(client: TestClient):
+    # Kannada
+    response_kn = client.get("/api/v1/treatments/Mango/anthracnose?lang=kn")
+    assert response_kn.status_code == 200
+    data_kn = response_kn.json()
+    assert "ಮಾವು" in data_kn["summary"]
+    assert "PlantScan AI" in data_kn["disclaimer"]
+
+    # Hindi
+    response_hi = client.get("/api/v1/treatments/Mango/anthracnose?lang=hi")
+    assert response_hi.status_code == 200
+    data_hi = response_hi.json()
+    assert "आम" in data_hi["summary"]
+    assert "PlantScan AI" in data_hi["disclaimer"]

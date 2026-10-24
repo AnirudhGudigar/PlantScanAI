@@ -50,5 +50,11 @@ class Settings:
     IMAGE_INPUT_SIZE: Tuple[int, int] = (224, 224)
     ENABLE_MOCK_FALLBACK: bool = True
 
+    # Security & CORS configuration
+    ENVIRONMENT: str = "development"
+    ENABLE_SIMULATION_HEADERS: bool = True
+    CORS_ORIGINS: List[str] = ["*"]
+    CORS_ALLOW_CREDENTIALS: bool = False
+
 
 settings = Settings()

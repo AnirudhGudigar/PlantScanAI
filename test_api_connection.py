@@ -5,8 +5,12 @@ Run this script to verify that your FastAPI backend server is running and access
 """
 
 import json
+import sys
 import urllib.request
 import urllib.error
+
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
 
 BASE_URL = "http://localhost:8000"
 

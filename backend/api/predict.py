@@ -11,6 +11,9 @@ from fastapi import (
     UploadFile,
     status,
 )
+from starlette.concurrency import run_in_threadpool
+
+from ..config import settings
 from ..schemas.common import ErrorDetail, PredictionStatus
 from ..schemas.prediction import Base64PredictRequest, PredictionResponse
 from ..services.image_processor import ImageProcessor, ImageValidationError
@@ -50,7 +53,9 @@ async def predict_image(
 
     try:
         image_bytes = await file.read()
-        pil_image = ImageProcessor.validate_and_load_bytes(image_bytes, filename=file.filename)
+        pil_image = await run_in_threadpool(
+            ImageProcessor.validate_and_load_bytes, image_bytes, filename=file.filename
+        )
     except ImageValidationError:
         raise
     except Exception as e:
@@ -64,22 +69,25 @@ async def predict_image(
             },
         )
 
-    input_array = ImageProcessor.preprocess_for_model(pil_image)
+    input_array = await run_in_threadpool(ImageProcessor.preprocess_for_model, pil_image)
 
     force_sim = None
-    if x_simulate_class or x_simulate_confidence is not None or x_simulate_crop:
-        force_sim = {
-            "class": x_simulate_class or "tomato_early_blight",
-            "confidence": x_simulate_confidence if x_simulate_confidence is not None else 0.94,
-            "crop": x_simulate_crop or "Tomato",
-        }
+    if settings.ENABLE_SIMULATION_HEADERS:
+        if x_simulate_class or x_simulate_confidence is not None or x_simulate_crop:
+            force_sim = {
+                "class": x_simulate_class or "tomato_early_blight",
+                "confidence": x_simulate_confidence if x_simulate_confidence is not None else 0.94,
+                "crop": x_simulate_crop or "Tomato",
+            }
 
     try:
-        prediction = engine.predict(
+        prediction = await run_in_threadpool(
+            engine.predict,
             image_array=input_array,
             crop_hint=crop_hint,
             plant_part_hint=plant_part_hint,
             force_simulation=force_sim,
+            original_image=pil_image,
         )
     except Exception as e:
         raise HTTPException(
@@ -93,11 +101,17 @@ async def predict_image(
         )
 
     inference_time_ms = round((time.perf_counter() - start_time) * 1000, 2)
-    forced_st = PredictionStatus(x_simulate_status) if x_simulate_status else None
-    response = treatment_svc.build_prediction_response(
+    forced_st = (
+        PredictionStatus(x_simulate_status)
+        if (settings.ENABLE_SIMULATION_HEADERS and x_simulate_status)
+        else None
+    )
+    response = await run_in_threadpool(
+        treatment_svc.build_prediction_response,
         prediction=prediction,
         inference_time_ms=inference_time_ms,
         forced_status=forced_st,
+        language=language,
     )
 
     return response
@@ -118,17 +132,21 @@ async def predict_base64_json(
     treatment_svc: TreatmentService = Depends(get_treatment_service),
 ) -> PredictionResponse:
     start_time = time.perf_counter()
-    pil_image = ImageProcessor.load_from_base64(request.image_base64)
-    input_array = ImageProcessor.preprocess_for_model(pil_image)
+    pil_image = await run_in_threadpool(ImageProcessor.load_from_base64, request.image_base64)
+    input_array = await run_in_threadpool(ImageProcessor.preprocess_for_model, pil_image)
 
-    prediction = engine.predict(
+    prediction = await run_in_threadpool(
+        engine.predict,
         image_array=input_array,
         crop_hint=request.crop_hint,
         plant_part_hint=request.plant_part_hint,
+        original_image=pil_image,
     )
 
     inference_time_ms = round((time.perf_counter() - start_time) * 1000, 2)
-    return treatment_svc.build_prediction_response(
+    return await run_in_threadpool(
+        treatment_svc.build_prediction_response,
         prediction=prediction,
         inference_time_ms=inference_time_ms,
+        language=request.language,
     )

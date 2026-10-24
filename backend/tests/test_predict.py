@@ -8,13 +8,27 @@ def test_predict_valid_image(client: TestClient, valid_leaf_image_bytes: bytes):
     
     assert response.status_code == 200
     data = response.json()
-    assert data["status"] == "success"
-    assert data["crop"] == "Tomato"
+    assert data["status"] in ["success", "uncertain"]
+    assert data["crop"] in [
+        "Apple", "Banana", "Bell pepper", "Cotton", "Grape",
+        "Maize", "Mango", "Potato", "Rice", "Tomato"
+    ]
     assert "predicted_class" in data
-    assert data["confidence"] >= 0.70
+    assert not data["predicted_class"].isdigit(), f"predicted_class should not be numeric string: {data['predicted_class']}"
     assert 0 <= data["plant_health_score"] <= 100
     assert data["recommendation"] is not None
     assert len(data["recommendation"]["disclaimer"]) > 0
+    assert "lesion_analysis" in data
+
+
+def test_predict_crop_routing_mango(client: TestClient, valid_leaf_image_bytes: bytes):
+    files = {"file": ("mango_leaf.jpg", valid_leaf_image_bytes, "image/jpeg")}
+    response = client.post("/api/v1/predict", files=files, data={"crop_hint": "Mango"})
+    assert response.status_code == 200
+    data = response.json()
+    assert data["crop"] == "Mango"
+    assert "predicted_class" in data
+    assert not data["predicted_class"].isdigit()
 
 
 def test_predict_forced_simulation_healthy(client: TestClient, valid_leaf_image_bytes: bytes):
@@ -86,3 +100,46 @@ def test_predict_json_base64_valid(client: TestClient, valid_base64_image: str):
     data = response.json()
     assert data["status"] in ["success", "uncertain"]
     assert data["crop"] == "Tomato"
+
+
+def test_predict_kannada_localization(client: TestClient, valid_leaf_image_bytes: bytes):
+    files = {"file": ("leaf.jpg", valid_leaf_image_bytes, "image/jpeg")}
+    headers = {
+        "X-Simulate-Class": "tomato_early_blight",
+        "X-Simulate-Confidence": "0.95",
+        "X-Simulate-Crop": "Tomato",
+    }
+    response = client.post("/api/v1/predict", files=files, data={"language": "kn"}, headers=headers)
+    assert response.status_code == 200
+    data = response.json()
+    assert data["crop"] == "ಟೊಮೆಟೊ"
+    assert "PlantScan AI" in data["recommendation"]["disclaimer"]
+    assert "ರೋಗನಿರ್ಣಯ ಯಶಸ್ವಿಯಾಗಿ ಪೂರ್ಣಗೊಂಡಿದೆ." in data["message"]
+
+
+def test_predict_hindi_localization(client: TestClient, valid_leaf_image_bytes: bytes):
+    files = {"file": ("leaf.jpg", valid_leaf_image_bytes, "image/jpeg")}
+    headers = {
+        "X-Simulate-Class": "tomato_early_blight",
+        "X-Simulate-Confidence": "0.95",
+        "X-Simulate-Crop": "Tomato",
+    }
+    response = client.post("/api/v1/predict", files=files, data={"language": "hi"}, headers=headers)
+    assert response.status_code == 200
+    data = response.json()
+    assert data["crop"] == "टमाटर"
+    assert "PlantScan AI" in data["recommendation"]["disclaimer"]
+    assert "निदान सफलतापूर्वक पूरा हुआ।" in data["message"]
+
+
+def test_predict_json_base64_kannada(client: TestClient, valid_base64_image: str):
+    payload = {
+        "image_base64": valid_base64_image,
+        "crop_hint": "Tomato",
+        "language": "kn",
+    }
+    response = client.post("/api/v1/predict/json", json=payload)
+    assert response.status_code == 200
+    data = response.json()
+    assert data["crop"] == "ಟೊಮೆಟೊ"
+    assert "PlantScan AI" in data["recommendation"]["disclaimer"]

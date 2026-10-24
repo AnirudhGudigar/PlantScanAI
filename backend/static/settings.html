@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings & Configuration | PLANTSCANAI</title>
+
+  <!-- Premium Typography: Outfit (Headings), Inter (Body), JetBrains Mono (Technical Telemetry) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Shared Modular Stylesheet -->
+  <link rel="stylesheet" href="/static/css/styles.css">
+
+</head>
+
+<body>
+
+  <!-- Ambient Subtle Monochrome Header Glow -->
+  <div class="ambient-glow-top"></div>
+
+  <!-- Technical Top Header -->
+  <header>
+    <a href="/app" class="brand">
+      <div class="brand-icon">⌘</div>
+      <div class="brand-text-group">
+        <div class="brand-title">PLANTSCANAI</div>
+        <div class="brand-badge">v1.2 AI-PATHOLOGY LAB</div>
+      </div>
+    </a>
+
+    <div class="header-actions">
+      <!-- Vernacular Language Switcher -->
+      <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="en" onclick="setLanguage('en')">EN</button>
+        <button class="lang-btn" data-lang="kn" onclick="setLanguage('kn')">ಕನ್ನಡ</button>
+        <button class="lang-btn" data-lang="hi" onclick="setLanguage('hi')">हिन्दी</button>
+      </div>
+
+      <div class="api-status-badge">
+        <span class="status-dot"></span>
+        <span id="apiStatusText">Engine Online</span>
+      </div>
+
+      <a href="/docs" target="_blank" class="docs-btn">
+        <span>Swagger API</span> ↗
+      </a>
+    </div>
+  </header>
+
+  <!-- Sticky Dashboard Navigation Sub-Bar -->
+  <nav class="dashboard-nav-strip" id="dashboardNavStrip">
+    <div class="dashboard-nav-inner">
+      <div class="dash-nav-group">
+        <a href="/app" class="dash-nav-btn" data-page="home">
+          <span>🏠</span> <span id="navTabHome">Home</span>
+        </a>
+        <a href="/app/scan" class="dash-nav-btn" data-page="scan">
+          <span>🔬</span> <span id="navTabScanner">Scan Plant</span>
+        </a>
+        <a href="/app/overview" class="dash-nav-btn" data-page="overview">
+          <span>▦</span> <span id="navTabOverview">Overview</span>
+        </a>
+        <a href="/app/history" class="dash-nav-btn" data-page="history">
+          <span>⏱️</span> <span id="navTabHistory">Analysis History</span>
+          <span class="dash-nav-badge" id="navHistoryCount">0</span>
+        </a>
+        <a href="/app/insights" class="dash-nav-btn" data-page="insights">
+          <span>🧬</span> <span id="navTabInsights">Disease Insights</span>
+        </a>
+        <a href="/app/settings" class="dash-nav-btn active" data-page="settings">
+          <span>⚙️</span> <span id="navTabSettings">Settings</span>
+        </a>
+      </div>
+
+      <div class="dash-nav-right">
+        <span>10 Crops Active</span>
+        <span>•</span>
+        <span>MobileNetV2 + Chromatic Seg</span>
+      </div>
+    </div>
+  </nav>
+
+  <main class="dashboard-main-container" id="dashboardMain">
+    <div class="view-panel active" id="view-settings">
+      <div class="section-header-tag">
+        <span>●</span> <span>CONFIGURATION</span>
+      </div>
+      <h2 class="section-main-title">
+        System Preferences &amp; Telemetry
+      </h2>
+
+      <div class="settings-grid">
+
+        <div class="card-panel">
+          <div class="card-panel-title">
+            <span>Vernacular Speech Synthesis</span>
+          </div>
+
+          <div class="settings-row">
+            <div>
+              <div class="settings-label">Preferred Advisory Language</div>
+              <div class="settings-desc">Select text &amp; spoken advisory dialect</div>
+            </div>
+            <div class="lang-switcher">
+              <button class="lang-btn active" id="btnSetLangEn" onclick="setLanguage('en')">EN</button>
+              <button class="lang-btn" id="btnSetLangKn" onclick="setLanguage('kn')">KN</button>
+              <button class="lang-btn" id="btnSetLangHi" onclick="setLanguage('hi')">HI</button>
+            </div>
+          </div>
+
+          <div class="settings-row">
+            <div>
+              <div class="settings-label">Voice Speech Rate</div>
+              <div class="settings-desc">Playback speed for advisory speech</div>
+            </div>
+            <select id="selVoiceRate" class="custom-pill" style="border-radius:6px; padding:0.35rem 0.6rem;"
+              onchange="updateVoiceRate(this.value)">
+              <option value="0.85">0.85x (Deliberate)</option>
+              <option value="1.0" selected>1.0x (Standard)</option>
+              <option value="1.15">1.15x (Brisk)</option>
+            </select>
+          </div>
+
+          <div class="settings-row">
+            <div>
+              <div class="settings-label">Speech Engine Status</div>
+              <div class="settings-desc">Browser Web Speech API</div>
+            </div>
+            <span class="dash-nav-badge" id="speechSupportBadge">Active</span>
+          </div>
+        </div>
+
+        <div class="card-panel">
+          <div class="card-panel-title">
+            <span>Neural Engine &amp; Health Checks</span>
+          </div>
+
+          <div class="settings-row">
+            <div>
+              <div class="settings-label">Backend Diagnostic Endpoint</div>
+              <div class="settings-desc">Target FastAPI routing service</div>
+            </div>
+            <span
+              style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:#ffffff;">/api/v1/predict</span>
+          </div>
+
+          <div class="settings-row">
+            <div>
+              <div class="settings-label">Uncertainty Confidence Threshold</div>
+              <div class="settings-desc">Lower bound for accepted classifications</div>
+            </div>
+            <span class="dash-nav-badge">0.45 (45.0%)</span>
+          </div>
+
+          <div class="settings-row">
+            <div>
+              <div class="settings-label">Engine Telemetry Ping</div>
+              <div class="settings-desc">Verify local API heartbeat</div>
+            </div>
+            <button class="btn-secondary" style="padding:0.35rem 0.8rem; font-size:0.75rem;"
+              onclick="pingBackendHealth()">Ping /health</button>
+          </div>
+
+          <div id="pingResultBox"
+            style="margin-top:0.75rem; font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--text-muted); display:none;">
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+  </main>
+
+  <!-- Aceternity-Inspired Floating Dock Navigation -->
+  <nav class="floating-dock-container" id="floatingDock">
+    <a href="/app" class="dock-item" data-page="home" data-title="Home">
+      🏠
+      <span class="dock-tooltip">Home</span>
+    </a>
+    <a href="/app/scan" class="dock-item" data-page="scan" data-title="Scan Plant">
+      📸
+      <span class="dock-tooltip">Scan Plant</span>
+    </a>
+    <a href="/app/overview" class="dock-item" data-page="overview" data-title="Overview">
+      ▦
+      <span class="dock-tooltip">Overview</span>
+    </a>
+    <a href="/app/history" class="dock-item" data-page="history" data-title="History">
+      ⏱️
+      <span class="dock-tooltip">History</span>
+    </a>
+    <a href="/app/insights" class="dock-item" data-page="insights" data-title="Insights">
+      🧬
+      <span class="dock-tooltip">Insights</span>
+    </a>
+    <a href="/app/settings" class="dock-item active" data-page="settings" data-title="Settings">
+      ⚙️
+      <span class="dock-tooltip">Settings</span>
+    </a>
+    <a href="/docs" target="_blank" class="dock-item" data-title="Swagger API">
+      📖
+      <span class="dock-tooltip">API Docs</span>
+    </a>
+  </nav>
+
+  <!-- Technical Footer (Monochrome) -->
+  <footer>
+    PLANTSCANAI • Department of Computer Science &amp; Engineering • JNNCE Shivamogga<br>
+    Powered by MobileNetV2 Neural Architectures, Dual-Stage Chromatic Lesion Segmentation &amp; Multilingual IPM
+    Knowledge Base.<br>
+    <span style="font-size:0.75rem; color:var(--text-dim); margin-top:0.4rem; display:inline-block;">
+      Preliminary agricultural screening tool. Confirm findings with local university extension agronomists before
+      chemical field intervention.
+    </span>
+  </footer>
+
+  <!-- Shared Core Application Utilities -->
+  <script src="/static/js/app-shared.js"></script>
+  <script src="/static/js/settings.js"></script>
+</body>
+
+</html>

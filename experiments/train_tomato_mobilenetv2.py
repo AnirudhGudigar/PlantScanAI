@@ -318,8 +318,7 @@ print("=" * 80)
 history = model.fit(
     train_ds,
     validation_data=val_ds,
-    epochs=EPOCHS,
-    class_weight=class_weights,
+    epochs=epochs,
     callbacks=callbacks,
 )
 

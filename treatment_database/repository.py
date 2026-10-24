@@ -15,11 +15,13 @@ class TreatmentRepository:
         self.class_to_record: Dict[str, Dict[str, Any]] = {}
         self.disclaimers: Dict[str, str] = {}
         self.default_unknown: Dict[str, Any] = {}
+        self.translations: Dict[str, Dict[str, Any]] = {}
         self.reload()
 
     def reload(self) -> None:
         self.crop_records.clear()
         self.class_to_record.clear()
+        self.translations.clear()
 
         # Load crop JSON files
         json_files = list(self.db_dir.glob("*.json"))
@@ -76,6 +78,23 @@ class TreatmentRepository:
                     "FAO Integrated Pest Management Guidelines",
                 ],
             }
+
+        # Load translations
+        trans_dir = self.db_dir / "translations"
+        if trans_dir.exists():
+            for t_file in trans_dir.glob("*.json"):
+                try:
+                    with open(t_file, "r", encoding="utf-8") as f:
+                        self.translations[t_file.stem.lower()] = json.load(f)
+                except Exception as e:
+                    print(f"Warning: Failed loading translation {t_file.name}: {e}")
+
+    def list_supported_languages(self) -> List[str]:
+        return sorted(list(self.translations.keys())) if self.translations else ["en"]
+
+    def get_translation(self, language: Optional[str] = "en") -> Dict[str, Any]:
+        lang = (language or "en").strip().lower()
+        return self.translations.get(lang, self.translations.get("en", {}))
 
     def list_supported_crops(self) -> List[str]:
         return sorted([data.get("crop", key.capitalize()) for key, data in self.crop_records.items()])

@@ -1,8 +1,9 @@
 from contextlib import asynccontextmanager
+from pathlib import Path
 from fastapi import FastAPI, HTTPException, Request, status
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import FileResponse, JSONResponse
 
 from .api.router import api_router
 from .config import settings
@@ -42,8 +43,8 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
+    allow_origins=settings.CORS_ORIGINS,
+    allow_credentials=settings.CORS_ALLOW_CREDENTIALS,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -80,8 +81,68 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
     )
 
 
+static_dir = Path(__file__).resolve().parent / "static"
+if static_dir.exists():
+    from fastapi.staticfiles import StaticFiles
+    app.mount("/static", StaticFiles(directory=str(static_dir)), name="static")
+
+
+@app.get("/app", response_class=FileResponse, tags=["Web UI"])
+@app.get("/app/home", response_class=FileResponse, tags=["Web UI"])
+@app.get("/app/workflow", response_class=FileResponse, tags=["Web UI"])
+async def serve_home():
+    index_file = static_dir / "index.html"
+    if index_file.exists():
+        return FileResponse(index_file)
+    raise HTTPException(status_code=404, detail="Home page not found")
+
+
+@app.get("/app/scan", response_class=FileResponse, tags=["Web UI"])
+async def serve_scan():
+    page = static_dir / "scan.html"
+    if page.exists():
+        return FileResponse(page)
+    raise HTTPException(status_code=404, detail="Scan page not found")
+
+
+@app.get("/app/overview", response_class=FileResponse, tags=["Web UI"])
+async def serve_overview():
+    page = static_dir / "overview.html"
+    if page.exists():
+        return FileResponse(page)
+    raise HTTPException(status_code=404, detail="Overview page not found")
+
+
+@app.get("/app/history", response_class=FileResponse, tags=["Web UI"])
+async def serve_history():
+    page = static_dir / "history.html"
+    if page.exists():
+        return FileResponse(page)
+    raise HTTPException(status_code=404, detail="History page not found")
+
+
+@app.get("/app/insights", response_class=FileResponse, tags=["Web UI"])
+async def serve_insights():
+    page = static_dir / "insights.html"
+    if page.exists():
+        return FileResponse(page)
+    raise HTTPException(status_code=404, detail="Disease Insights page not found")
+
+
+@app.get("/app/settings", response_class=FileResponse, tags=["Web UI"])
+async def serve_settings():
+    page = static_dir / "settings.html"
+    if page.exists():
+        return FileResponse(page)
+    raise HTTPException(status_code=404, detail="Settings page not found")
+
+
 @app.get("/", tags=["General"])
-async def root():
+async def root(request: Request):
+    accept = request.headers.get("accept", "")
+    index_file = static_dir / "index.html"
+    if "text/html" in accept and not "application/json" in accept and index_file.exists():
+        return FileResponse(index_file)
     return {
         "project": settings.PROJECT_NAME,
         "version": settings.VERSION,
@@ -89,13 +150,13 @@ async def root():
         "documentation": "/docs",
         "health_check": "/api/v1/health",
         "predict_endpoint": "/api/v1/predict",
+        "web_ui": "/app",
     }
 
 
 app.include_router(api_router, prefix=settings.API_PREFIX)
-app.include_router(api_router)
 
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("backend.main:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("backend.main:app", host="127.0.0.1", port=8000, reload=True)
