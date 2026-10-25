@@ -17,7 +17,7 @@ def test_health_check_endpoint(client: TestClient):
     assert data["status"] == "healthy"
     assert data["service"] == "PlantScan AI API"
     assert data["treatment_database_loaded"] is True
-    assert data["supported_crops_count"] >= 5
+    assert data["supported_crops_count"] == 10
     assert "active_model_engine" in data
 
 
@@ -28,5 +28,7 @@ def test_info_endpoint(client: TestClient):
     assert data["project_name"] == "PlantScan AI"
     assert data["confidence_threshold"] == 0.70
     assert "Tomato" in data["supported_crops"]
+    assert "Mango" in data["supported_crops"]
+    assert "Apple" in data["supported_crops"]
     assert data["max_image_size_mb"] == 10
     assert ".jpg" in data["allowed_formats"]

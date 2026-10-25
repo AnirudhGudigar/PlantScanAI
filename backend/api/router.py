@@ -5,7 +5,6 @@ from .treatments import router as treatments_router
 
 api_router = APIRouter()
 
-# Include sub-routers
 api_router.include_router(health_router)
 api_router.include_router(predict_router)
 api_router.include_router(treatments_router)

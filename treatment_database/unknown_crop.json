@@ -1,0 +1,26 @@
+{
+  "photo_guidance": [
+    "Ensure good natural daylight (avoid direct harsh midday sun or deep shadows).",
+    "Focus sharply on the lesion or affected area.",
+    "Include both top surface and underside of the leaf if possible.",
+    "Avoid taking photos with messy backgrounds, hands covering symptoms, or heavy motion blur."
+  ],
+  "organic_measures": [
+    {
+      "name": "General Field Hygiene",
+      "method": "Inspect adjacent plants for similar symptoms. Prune any visibly rotten or dead plant material using sterilized tools.",
+      "application": "Morning hours",
+      "frequency": "As needed during weekly monitoring",
+      "caution_level": "Low"
+    }
+  ],
+  "prevention_measures": [
+    "Capture a clear, well-focused close-up photo of the affected plant part in natural daylight.",
+    "Avoid applying broad-spectrum synthetic chemical pesticides without verified diagnostic confirmation.",
+    "Take fresh physical plant samples to your nearest agricultural extension center or KVK."
+  ],
+  "sources": [
+    "ICAR Extension Field Handbook",
+    "FAO Integrated Pest Management Guidelines"
+  ]
+}

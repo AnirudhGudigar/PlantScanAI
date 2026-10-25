@@ -1,0 +1,219 @@
+{
+  "crop": "tomato",
+  "classes": [
+    "tomato_bacterial_spot",
+    "tomato_early_blight",
+    "tomato_healthy",
+    "tomato_late_blight",
+    "tomato_leaf_mold",
+    "tomato_mosaic_virus",
+    "tomato_septoria_leaf_spot",
+    "tomato_spider_mites",
+    "tomato_target_spot",
+    "tomato_yellow_leaf_curl_virus"
+  ],
+  "test_loss": 0.4905908703804016,
+  "test_accuracy": 0.8487746715545654,
+  "weighted_precision": 0.860094776950236,
+  "weighted_recall": 0.8487746563060371,
+  "weighted_f1_score": 0.8500434358315274,
+  "confusion_matrix": [
+    [
+      170,
+      6,
+      2,
+      7,
+      3,
+      1,
+      18,
+      0,
+      8,
+      0
+    ],
+    [
+      1,
+      64,
+      1,
+      11,
+      7,
+      0,
+      10,
+      2,
+      12,
+      0
+    ],
+    [
+      0,
+      1,
+      136,
+      1,
+      0,
+      1,
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      8,
+      1,
+      196,
+      9,
+      0,
+      2,
+      2,
+      1,
+      0
+    ],
+    [
+      1,
+      5,
+      0,
+      2,
+      82,
+      0,
+      1,
+      1,
+      0,
+      1
+    ],
+    [
+      0,
+      1,
+      2,
+      1,
+      5,
+      30,
+      1,
+      1,
+      1,
+      0
+    ],
+    [
+      1,
+      5,
+      4,
+      3,
+      9,
+      0,
+      174,
+      1,
+      7,
+      1
+    ],
+    [
+      0,
+      0,
+      10,
+      1,
+      9,
+      0,
+      2,
+      135,
+      12,
+      1
+    ],
+    [
+      4,
+      0,
+      12,
+      0,
+      5,
+      0,
+      2,
+      3,
+      129,
+      1
+    ],
+    [
+      7,
+      0,
+      0,
+      0,
+      7,
+      0,
+      0,
+      1,
+      6,
+      304
+    ]
+  ],
+  "classification_report": {
+    "tomato_bacterial_spot": {
+      "precision": 0.9239130434782609,
+      "recall": 0.7906976744186046,
+      "f1-score": 0.8521303258145363,
+      "support": 215.0
+    },
+    "tomato_early_blight": {
+      "precision": 0.7111111111111111,
+      "recall": 0.5925925925925926,
+      "f1-score": 0.6464646464646465,
+      "support": 108.0
+    },
+    "tomato_healthy": {
+      "precision": 0.8095238095238095,
+      "recall": 0.9714285714285714,
+      "f1-score": 0.8831168831168831,
+      "support": 140.0
+    },
+    "tomato_late_blight": {
+      "precision": 0.8828828828828829,
+      "recall": 0.8949771689497716,
+      "f1-score": 0.8888888888888888,
+      "support": 219.0
+    },
+    "tomato_leaf_mold": {
+      "precision": 0.6029411764705882,
+      "recall": 0.8817204301075269,
+      "f1-score": 0.7161572052401747,
+      "support": 93.0
+    },
+    "tomato_mosaic_virus": {
+      "precision": 0.9375,
+      "recall": 0.7142857142857143,
+      "f1-score": 0.8108108108108109,
+      "support": 42.0
+    },
+    "tomato_septoria_leaf_spot": {
+      "precision": 0.8246445497630331,
+      "recall": 0.848780487804878,
+      "f1-score": 0.8365384615384616,
+      "support": 205.0
+    },
+    "tomato_spider_mites": {
+      "precision": 0.9246575342465754,
+      "recall": 0.7941176470588235,
+      "f1-score": 0.8544303797468354,
+      "support": 170.0
+    },
+    "tomato_target_spot": {
+      "precision": 0.7329545454545454,
+      "recall": 0.8269230769230769,
+      "f1-score": 0.7771084337349398,
+      "support": 156.0
+    },
+    "tomato_yellow_leaf_curl_virus": {
+      "precision": 0.987012987012987,
+      "recall": 0.9353846153846154,
+      "f1-score": 0.9605055292259084,
+      "support": 325.0
+    },
+    "accuracy": 0.8487746563060371,
+    "macro avg": {
+      "precision": 0.8337141639943793,
+      "recall": 0.8250907978954174,
+      "f1-score": 0.8226151564582086,
+      "support": 1673.0
+    },
+    "weighted avg": {
+      "precision": 0.860094776950236,
+      "recall": 0.8487746563060371,
+      "f1-score": 0.8500434358315274,
+      "support": 1673.0
+    }
+  },
+  "weights_path": "D:\\Sagarnag\\major project\\pgpt\\PlantScanAI\\ml\\weights\\tomato\\tomato_mobilenetv2.keras",
+  "tflite_path": "D:\\Sagarnag\\major project\\pgpt\\PlantScanAI\\ml\\weights\\tomato\\tomato_model.tflite"
+}

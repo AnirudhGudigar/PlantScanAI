@@ -12,7 +12,8 @@
           "name": "De-leafing & Botanical Spray",
           "method": "Prune severely spotted leaves. Spray neem oil formulation (5 ml/L) with soap emulsifier.",
           "application": "Canopy spray & pruning",
-          "frequency": "Every 14 days"
+          "frequency": "Every 14 days",
+          "caution_level": "Low"
         }
       ],
       "chemical_measures": [
@@ -25,97 +26,103 @@
         }
       ],
       "prevention_measures": [
-        "Improve drainage and ensure banana stools are adequately thinned.",
-        "Prune excessive suckers to allow airflow."
+        "Improve field drainage and eliminate standing water.",
+        "Maintain appropriate mat spacing to lower canopy humidity.",
+        "Remove infected leaf trash from the plantation floor."
       ],
       "sources": [
-        "ICAR-National Research Centre for Banana (NRCB) Trichy",
-        "FAO Banana Disease Management Manual"
-      ]
-    },
-    "sigatoka": {
-      "class_name": "sigatoka",
-      "display_name": "Banana Yellow / Black Sigatoka",
-      "pathogen": "Mycosphaerella musicola / Mycosphaerella fijiensis (Fungal)",
-      "base_health_score": 35,
-      "symptoms": "Small yellowish streaks expanding into dark brown to black spots with grey centers and yellow halos, coalescing and causing premature leaf death.",
-      "organic_measures": [
-        {
-          "name": "Sanitary De-leafing & Petroleum / Mineral Oil Spray",
-          "method": "Cut off heavily infected leaf tips or whole leaves. Apply agricultural grade horticultural mineral spray oil (10 ml/L) to inhibit spore germination.",
-          "application": "Foliar spray and field sanitation",
-          "frequency": "Bi-weekly during monsoon"
-        }
-      ],
-      "chemical_measures": [
-        {
-          "name": "Tridemorph 80% EC or Propiconazole 25% EC",
-          "active_ingredient": "Tridemorph / Propiconazole",
-          "dosage": "1.0 ml per liter",
-          "safety_precautions": "Wear full PPE. Rotate with contact protectants (Mancozeb) to avoid resistance.",
-          "caution_level": "High"
-        }
-      ],
-      "prevention_measures": [
-        "Maintain plantation density at recommended spacing (e.g., 1.8 x 1.8 m or 2.1 x 1.5 m).",
-        "Ensure field ditches have good gradient for drainage."
-      ],
-      "sources": [
-        "ICAR-NRCB Sigatoka Advisory",
-        "ProMusa Sigatoka Disease Management Guide"
+        "ICAR - National Research Centre for Banana (NRCB) Disease Guide",
+        "FAO Banana Disease Advisory"
       ]
     },
     "pestalotiopsis": {
       "class_name": "pestalotiopsis",
       "display_name": "Banana Pestalotiopsis Leaf Spot",
-      "pathogen": "Pestalotiopsis spp. (Fungal)",
-      "base_health_score": 55,
-      "symptoms": "Circular or irregular ash-grey spots with dark brown margins, often bearing minute black fruiting bodies.",
+      "pathogen": "Pestalotiopsis palmarum (Fungal)",
+      "base_health_score": 50,
+      "symptoms": "Circular to dark brown irregular spots with gray necrotic centers studded with minute black pycnidia.",
       "organic_measures": [
         {
-          "name": "Copper Hydroxide Spray",
-          "method": "Apply copper hydroxide (2 g/L) on affected foliage.",
+          "name": "Trichoderma viride Spray",
+          "method": "Apply bio-fungicide Trichoderma viride (5 g/L) to foliage.",
           "application": "Foliar spray",
-          "frequency": "Every 10-14 days"
+          "frequency": "Every 10 to 14 days",
+          "caution_level": "Low"
         }
       ],
       "chemical_measures": [
         {
-          "name": "Carbendazim 50% WP or Mancozeb",
-          "active_ingredient": "Carbendazim / Mancozeb",
-          "dosage": "1.0 - 2.0 g per liter",
-          "safety_precautions": "Wear PPE. Avoid runoff into waterways.",
+          "name": "Carbendazim 50% WP",
+          "active_ingredient": "Carbendazim",
+          "dosage": "1.0 g per liter of water",
+          "safety_precautions": "Use strictly according to safety label guidelines.",
           "caution_level": "Moderate"
         }
       ],
       "prevention_measures": [
         "Avoid mechanical injury to banana leaves during cultivation.",
-        "Ensure balanced nutrition with micronutrients."
+        "Ensure optimal potassium and micronutrient soil nutrition."
       ],
       "sources": [
-        "ICAR-NRCB Advisory"
+        "ICAR-NRCB Extension Leaflet"
+      ]
+    },
+    "sigatoka": {
+      "class_name": "sigatoka",
+      "display_name": "Banana Yellow / Black Sigatoka",
+      "pathogen": "Mycosphaerella musicola / fijiensis (Fungal)",
+      "base_health_score": 35,
+      "symptoms": "Small yellowish-green streaks expanding into dark brown/black necrotic spots with yellow halos, causing premature leaf collapse.",
+      "organic_measures": [
+        {
+          "name": "Sanitary Pruning & Mineral Oil Spray",
+          "method": "Systematically cut and bury/burn affected leaf tips. Spray horticultural mineral oil emulsion (10 ml/L).",
+          "application": "Foliar canopy spray",
+          "frequency": "Every 10 to 14 days during wet season",
+          "caution_level": "Low"
+        }
+      ],
+      "chemical_measures": [
+        {
+          "name": "Propiconazole 25% EC or Tebuconazole 25.9% EC",
+          "active_ingredient": "Propiconazole / Tebuconazole",
+          "dosage": "1.0 ml per liter of water",
+          "safety_precautions": "Rotate systemic triazoles with protectant fungicides (Mancozeb) to prevent fungicide resistance.",
+          "caution_level": "High"
+        }
+      ],
+      "prevention_measures": [
+        "Maintain clean field sanitation (de-leafing).",
+        "Ensure effective field drainage systems.",
+        "Avoid excessive nitrogen fertilization."
+      ],
+      "sources": [
+        "FAO Global Sigatoka Management Protocol",
+        "ICAR-NRCB Banana Advisory"
       ]
     },
     "banana_healthy": {
       "class_name": "banana_healthy",
       "display_name": "Healthy Banana Plant",
-      "pathogen": "None (Plant is healthy)",
+      "pathogen": "None (Healthy Crop)",
       "base_health_score": 95,
-      "symptoms": "Large broad green intact leaves, robust pseudostem, no spotting or leaf tear.",
+      "symptoms": "Broad, intact, deep green leaf canopy without necrotic spots, tears, or marginal yellowing.",
       "organic_measures": [
         {
-          "name": "Organic Mulching & Bio-fertilizer",
-          "method": "Apply banana pseudostem mulch and vermicompost around root zone.",
-          "application": "Basal mulching",
-          "frequency": "Monthly"
+          "name": "Organic Compost & Mulching",
+          "method": "Apply 10 kg farmyard manure (FYM) per mat along with bio-fertilizers (Azospirillum & PSB).",
+          "application": "Basal ring application",
+          "frequency": "Bi-annually",
+          "caution_level": "Low"
         }
       ],
       "chemical_measures": [],
       "prevention_measures": [
-        "Continue periodic desuckering and sanitary weed management."
+        "Desucker regularly to maintain 1 mother + 1 sucker mat density.",
+        "Keep pseudostem base clean."
       ],
       "sources": [
-        "ICAR-NRCB Good Agricultural Practices"
+        "ICAR-NRCB Production Technology Handbook"
       ]
     }
   }

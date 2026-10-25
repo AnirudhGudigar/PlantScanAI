@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scan Plant — Foliar Pathology & Lesion Scanner | PLANTSCANAI</title>
+
+  <!-- Premium Typography: Outfit (Headings), Inter (Body), JetBrains Mono (Technical Telemetry) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Shared Modular Stylesheet -->
+  <link rel="stylesheet" href="/static/css/styles.css">
+
+</head>
+
+<body>
+
+  <!-- Ambient Subtle Monochrome Header Glow -->
+  <div class="ambient-glow-top"></div>
+
+  <!-- Technical Top Header -->
+  <header>
+    <a href="/app" class="brand">
+      <div class="brand-icon">⌘</div>
+      <div class="brand-text-group">
+        <div class="brand-title">PLANTSCANAI</div>
+        <div class="brand-badge">v1.2 AI-PATHOLOGY LAB</div>
+      </div>
+    </a>
+
+    <div class="header-actions">
+      <!-- Vernacular Language Switcher -->
+      <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="en" onclick="setLanguage('en')">EN</button>
+        <button class="lang-btn" data-lang="kn" onclick="setLanguage('kn')">ಕನ್ನಡ</button>
+        <button class="lang-btn" data-lang="hi" onclick="setLanguage('hi')">हिन्दी</button>
+      </div>
+
+      <div class="api-status-badge">
+        <span class="status-dot"></span>
+        <span id="apiStatusText">Engine Online</span>
+      </div>
+
+      <a href="/docs" target="_blank" class="docs-btn">
+        <span>Swagger API</span> ↗
+      </a>
+    </div>
+  </header>
+
+  <!-- Sticky Dashboard Navigation Sub-Bar -->
+  <nav class="dashboard-nav-strip" id="dashboardNavStrip">
+    <div class="dashboard-nav-inner">
+      <div class="dash-nav-group">
+        <a href="/app" class="dash-nav-btn" data-page="home">
+          <span>🏠</span> <span id="navTabHome">Home</span>
+        </a>
+        <a href="/app/scan" class="dash-nav-btn active" data-page="scan">
+          <span>🔬</span> <span id="navTabScanner">Scan Plant</span>
+        </a>
+        <a href="/app/overview" class="dash-nav-btn" data-page="overview">
+          <span>▦</span> <span id="navTabOverview">Overview</span>
+        </a>
+        <a href="/app/history" class="dash-nav-btn" data-page="history">
+          <span>⏱️</span> <span id="navTabHistory">Analysis History</span>
+          <span class="dash-nav-badge" id="navHistoryCount">0</span>
+        </a>
+        <a href="/app/insights" class="dash-nav-btn" data-page="insights">
+          <span>🧬</span> <span id="navTabInsights">Disease Insights</span>
+        </a>
+        <a href="/app/settings" class="dash-nav-btn" data-page="settings">
+          <span>⚙️</span> <span id="navTabSettings">Settings</span>
+        </a>
+      </div>
+
+      <div class="dash-nav-right">
+        <span>10 Crops Active</span>
+        <span>•</span>
+        <span>MobileNetV2 + Chromatic Seg</span>
+      </div>
+    </div>
+  </nav>
+
+  <main class="dashboard-main-container" id="dashboardMain">
+    <div class="view-panel active" id="view-scanner">
+      <div class="section-header-tag">
+        <span>●</span> <span id="lblScanTag">DIAGNOSTIC WORKSPACE</span>
+      </div>
+      <h2 class="section-main-title" id="uploadTitle">
+        Foliar Pathology &amp; Lesion Scanner
+      </h2>
+
+      <div class="dashboard-grid">
+
+        <!-- Left Column: Image Upload & Configuration -->
+        <div class="card-panel">
+          <div class="card-panel-title">
+            <span id="cardScanTitle">Diagnostic Input</span>
+            <span
+              style="font-size:0.75rem; font-weight:500; color:var(--text-muted); font-family:'JetBrains Mono',monospace;">JPEG,
+              PNG, WebP</span>
+          </div>
+
+          <!-- Target Crop Hint Selector -->
+          <div class="selector-label">
+            <span id="cropSelectLabel">Target Crop (Optional Hint):</span>
+            <span style="font-size:0.72rem; color:var(--text-secondary); font-family:'JetBrains Mono',monospace;">10
+              Crops Supported</span>
+          </div>
+          <div class="pill-group" id="cropPills">
+            <!-- Populated dynamically via JS -->
+          </div>
+
+          <!-- Plant Part Selector -->
+          <div class="selector-label">
+            <span id="partSelectLabel">Plant Part (Auto or Select):</span>
+          </div>
+          <div class="pill-group" id="partPills">
+            <!-- Populated dynamically via JS -->
+          </div>
+
+          <!-- Drag-and-Drop Area -->
+          <div class="dropzone" id="dropzone" onclick="document.getElementById('imageInput').click()">
+            <div class="dropzone-icon">🌱</div>
+            <div class="dropzone-text" id="dropzoneText">Drag &amp; drop plant photo here, or browse</div>
+            <div class="dropzone-sub" id="dropzoneSub">Supports JPEG, PNG, WebP (Max 10 MB)</div>
+            <input type="file" id="imageInput" accept="image/jpeg,image/png,image/webp">
+          </div>
+
+          <!-- Image Preview Container -->
+          <div class="preview-container" id="previewContainer">
+            <img src="" alt="Selected plant photo" class="preview-image" id="previewImg">
+            <div class="preview-actions">
+              <button class="btn-preview-action" title="Remove Image" onclick="removeImage(event)">✕</button>
+            </div>
+          </div>
+
+          <!-- Quick Pick Verification Samples -->
+          <div class="samples-heading" id="samplesHeading">Or test with verified sample cases:</div>
+          <div class="sample-grid" id="sampleCardsContainer">
+            <!-- Populated dynamically via JS -->
+          </div>
+
+          <!-- Action Button -->
+          <button class="btn-analyze" id="btnAnalyze" onclick="runDiagnosis()" disabled>
+            <div class="spinner" id="analyzeSpinner"></div>
+            <span id="btnAnalyzeText">Run AI Diagnosis</span>
+          </button>
+        </div>
+
+        <!-- Right Column: Analysis Results Dashboard -->
+        <div class="card-panel" id="resultsCard">
+
+          <!-- Empty Placeholder -->
+          <div class="results-placeholder" id="resultsPlaceholder">
+            <div class="placeholder-icon">🔬</div>
+            <h3 id="awaitingTitle"
+              style="font-family:'Outfit',sans-serif; font-size:1.3rem; margin-bottom:0.4rem; color:#ffffff;">Awaiting
+              Plant Image</h3>
+            <p id="awaitingSub" style="font-size:0.85rem; max-width:380px; margin:0 auto; line-height:1.5;">
+              Upload an affected plant leaf or fruit to inspect instant crop routing, disease classification, foliar
+              lesion boundaries, and IPM protocols.
+            </p>
+          </div>
+
+          <!-- Live Diagnosis Results Dashboard -->
+          <div class="results-content" id="resultsContent">
+
+            <div class="diagnosis-header">
+              <div class="diagnosis-meta">
+                <div class="tag-row">
+                  <span class="crop-tag" id="resCropTag">Tomato</span>
+                  <span class="crop-mode-badge auto-mode" id="resCropModeTag">Auto-Detected</span>
+                  <button type="button" class="btn-override-crop" id="btnOverrideCrop" onclick="triggerCropOverride()"
+                    title="Change or override crop">
+                    <span>Override</span> ▾
+                  </button>
+                  <span class="status-badge" id="resStatusBadge">Foliar Disease</span>
+                </div>
+                <div id="resCropCandidateBar" style="display:none; margin:0.4rem 0 0.6rem 0;"></div>
+                <h3 class="disease-name" id="resDiseaseName">Early Blight</h3>
+                <div class="disease-canonical" id="resCanonical">tomato_early_blight</div>
+              </div>
+
+              <!-- Health Score Radial Gauge (Monochrome) -->
+              <div class="gauge-wrapper">
+                <svg class="gauge-svg" viewBox="0 0 100 100">
+                  <circle class="gauge-bg" cx="50" cy="50" r="42"></circle>
+                  <circle class="gauge-val" id="gaugeCircle" cx="50" cy="50" r="42"></circle>
+                </svg>
+                <div class="gauge-text">
+                  <div class="gauge-number" id="gaugeNum">85</div>
+                  <div class="gauge-label" id="gaugeLabel">Health</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quantitative Metrics Bar -->
+            <div class="metric-bar">
+              <div class="metric-box">
+                <div class="metric-box-label" id="labelConfidence">Confidence</div>
+                <div class="metric-box-val" id="resConfidence">96.4%</div>
+              </div>
+              <div class="metric-box">
+                <div class="metric-box-label" id="labelPlantPart">Plant Part</div>
+                <div class="metric-box-val" id="resPart">Leaf</div>
+              </div>
+              <div class="metric-box">
+                <div class="metric-box-label" id="labelLatency">Latency</div>
+                <div class="metric-box-val" id="resLatency">28 ms</div>
+              </div>
+            </div>
+
+            <!-- Foliar Lesion Detection & Highlighting Section -->
+            <div class="lesion-section" id="lesionSection">
+              <div class="lesion-header">
+                <span class="lesion-title" id="lesionTitle">
+                  <span>🔬</span> Foliar Lesion Detection &amp; Highlighting
+                </span>
+                <span class="caution-badge" id="resLesionSeverity">None</span>
+              </div>
+
+              <!-- Side-by-Side Images Viewport -->
+              <div class="lesion-grid">
+                <div class="lesion-card">
+                  <div class="lesion-card-label" id="lblOriginalImg">Original Leaf Photo</div>
+                  <img id="imgOriginalCompare" class="lesion-card-img" alt="Original leaf image">
+                </div>
+                <div class="lesion-card">
+                  <div class="lesion-card-label" id="lblHighlightImg">Detected Lesions (Red Tint)</div>
+                  <img id="imgOverlayCompare" class="lesion-card-img" alt="Lesion overlay highlight">
+                </div>
+              </div>
+
+              <!-- Quantitative Lesion Statistics -->
+              <div class="lesion-stats-grid">
+                <div class="lesion-stat-box">
+                  <div class="lesion-stat-val" id="statLesionCount">0</div>
+                  <div class="lesion-stat-lbl" id="lblStatCount">Lesions Found</div>
+                </div>
+                <div class="lesion-stat-box">
+                  <div class="lesion-stat-val" id="statAffectedArea">0.0%</div>
+                  <div class="lesion-stat-lbl" id="lblStatArea">Leaf Area Affected</div>
+                </div>
+                <div class="lesion-stat-box">
+                  <div class="lesion-stat-val" id="statLesionPixels">0</div>
+                  <div class="lesion-stat-lbl" id="lblStatPixels">Lesion Pixels</div>
+                </div>
+                <div class="lesion-stat-box">
+                  <div class="lesion-stat-val" id="statLeafPixels">0</div>
+                  <div class="lesion-stat-lbl" id="lblStatLeaf">Leaf Mask Pixels</div>
+                </div>
+              </div>
+
+              <div class="lesion-controls">
+                <div class="lesion-note" id="lesionMethodNote">
+                  Leaf segmented from background; lesions isolated strictly within foliar tissue.
+                </div>
+                <button class="btn-toggle-mask" id="btnToggleMask" type="button" onclick="toggleLesionMaskView()">
+                  <span>🔳</span> <span id="btnToggleMaskText">View Binary Mask</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Voice Assistant Bar -->
+            <div class="voice-assistant-bar">
+              <div class="voice-controls">
+                <button class="btn-voice" id="btnVoiceSpeak" onclick="speakAdvisory()">
+                  <span>🔊</span> <span id="voiceBtnText">Listen to Advisory</span>
+                </button>
+                <button class="btn-voice-stop" id="btnVoiceStop" onclick="stopSpeech()">
+                  ⏹ <span id="voiceStopText">Stop</span>
+                </button>
+              </div>
+              <div class="audio-waves" id="audioWaves">
+                <div class="audio-bar"></div>
+                <div class="audio-bar"></div>
+                <div class="audio-bar"></div>
+                <div class="audio-bar"></div>
+              </div>
+            </div>
+
+            <!-- Summary Advisory Banner -->
+            <div class="summary-banner" id="resSummary">
+              Identified Tomato Early Blight with 96.4% confidence.
+            </div>
+
+            <!-- IPM Tabs -->
+            <div class="treatment-tabs">
+              <button class="treatment-tab-btn active" onclick="switchTreatmentTab('organic')">
+                🌿 <span id="tabOrganicTitle">Organic (Priority 1)</span>
+              </button>
+              <button class="treatment-tab-btn" onclick="switchTreatmentTab('chemical')">
+                🧪 <span id="tabChemicalTitle">Chemical</span>
+              </button>
+              <button class="treatment-tab-btn" onclick="switchTreatmentTab('prevention')">
+                🛡️ <span id="tabPreventionTitle">Prevention</span>
+              </button>
+            </div>
+
+            <!-- Treatment List -->
+            <div class="treatment-list" id="treatmentList">
+              <!-- Dynamic Treatment Items Inserted Here -->
+            </div>
+
+            <!-- Disclaimer Box -->
+            <div class="disclaimer-box" id="resDisclaimer">
+              This advisory is generated by PlantScan AI for preliminary screening. Consult local extension agronomists
+              before field treatments.
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ========================================================================
+
+  </main>
+
+  <!-- Aceternity-Inspired Floating Dock Navigation -->
+  <nav class="floating-dock-container" id="floatingDock">
+    <a href="/app" class="dock-item" data-page="home" data-title="Home">
+      🏠
+      <span class="dock-tooltip">Home</span>
+    </a>
+    <a href="/app/scan" class="dock-item active" data-page="scan" data-title="Scan Plant">
+      📸
+      <span class="dock-tooltip">Scan Plant</span>
+    </a>
+    <a href="/app/overview" class="dock-item" data-page="overview" data-title="Overview">
+      ▦
+      <span class="dock-tooltip">Overview</span>
+    </a>
+    <a href="/app/history" class="dock-item" data-page="history" data-title="History">
+      ⏱️
+      <span class="dock-tooltip">History</span>
+    </a>
+    <a href="/app/insights" class="dock-item" data-page="insights" data-title="Insights">
+      🧬
+      <span class="dock-tooltip">Insights</span>
+    </a>
+    <a href="/app/settings" class="dock-item" data-page="settings" data-title="Settings">
+      ⚙️
+      <span class="dock-tooltip">Settings</span>
+    </a>
+    <a href="/docs" target="_blank" class="dock-item" data-title="Swagger API">
+      📖
+      <span class="dock-tooltip">API Docs</span>
+    </a>
+  </nav>
+
+  <!-- Technical Footer (Monochrome) -->
+  <footer>
+    PLANTSCANAI • Department of Computer Science &amp; Engineering • JNNCE Shivamogga<br>
+    Powered by MobileNetV2 Neural Architectures, Dual-Stage Chromatic Lesion Segmentation &amp; Multilingual IPM
+    Knowledge Base.<br>
+    <span style="font-size:0.75rem; color:var(--text-dim); margin-top:0.4rem; display:inline-block;">
+      Preliminary agricultural screening tool. Confirm findings with local university extension agronomists before
+      chemical field intervention.
+    </span>
+  </footer>
+
+  <!-- Shared Core Application Utilities -->
+  <script src="/static/js/app-shared.js"></script>
+  <script src="/static/js/scan.js"></script>
+</body>
+
+</html>

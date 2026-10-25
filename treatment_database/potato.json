@@ -5,39 +5,34 @@
       "class_name": "potato_early_blight",
       "display_name": "Potato Early Blight",
       "pathogen": "Alternaria solani (Fungal)",
-      "base_health_score": 50,
-      "symptoms": "Brown to black spots on older lower leaves with concentric dark rings resembling a target board. Leaf tissue yellows around spots.",
+      "base_health_score": 45,
+      "symptoms": "Dark brown concentric ring spots on mature leaves, yellowing of surrounding leaf tissue, defoliation starting from base.",
       "organic_measures": [
         {
-          "name": "Bordeaux Mixture / Copper Hydroxide",
-          "method": "Spray 1% Bordeaux mixture or copper hydroxide (2 g/L) at early detection.",
+          "name": "Copper Oxychloride / Bio-agent Spray",
+          "method": "Spray copper oxychloride (2.5 g/L) or Trichoderma viride formulation (5 g/L).",
           "application": "Foliar spray",
-          "frequency": "Every 7 to 10 days"
-        },
-        {
-          "name": "Debris Removal",
-          "method": "Remove and safely destroy heavily infected haulms/vines.",
-          "application": "Field sanitation",
-          "frequency": "Weekly"
+          "frequency": "Every 7 to 10 days",
+          "caution_level": "Low"
         }
       ],
       "chemical_measures": [
         {
-          "name": "Mancozeb 75% WP or Chlorothalonil",
-          "active_ingredient": "Mancozeb / Chlorothalonil",
-          "dosage": "2.0 - 2.5 g per liter",
-          "safety_precautions": "Wear PPE. Observe 14-day pre-harvest interval.",
+          "name": "Mancozeb 75% WP",
+          "active_ingredient": "Mancozeb",
+          "dosage": "2.0 g per liter of water",
+          "safety_precautions": "Wear PPE. Pre-harvest interval (PHI): 14 days.",
           "caution_level": "Moderate"
         }
       ],
       "prevention_measures": [
-        "Rotate fields away from solanaceous crops for 3 years.",
-        "Ensure optimal nitrogen and potassium fertilization to prevent early senescence.",
-        "Maintain hill height to protect tubers from spore wash-in."
+        "Rotate potato fields with non-solanaceous crops for 3 years.",
+        "Ensure adequate nitrogen and potassium soil fertilization.",
+        "Destroy crop residue post-harvest."
       ],
       "sources": [
-        "ICAR-Central Potato Research Institute (CPRI) Disease Advisory",
-        "Cornell Extension Potato Pathology"
+        "ICAR - Central Potato Research Institute (CPRI) Advisory",
+        "Cornell University Potato Extension"
       ]
     },
     "potato_late_blight": {
@@ -45,55 +40,57 @@
       "display_name": "Potato Late Blight",
       "pathogen": "Phytophthora infestans (Oomycete)",
       "base_health_score": 25,
-      "symptoms": "Dark brown water-soaked lesions expanding rapidly across leaves and stems with white mold fringe on underside during damp conditions.",
+      "symptoms": "Rapidly expanding water-soaked purplish-black leaf lesions with white fungal downy growth on undersides in cool wet weather.",
       "organic_measures": [
         {
-          "name": "Fixed Copper Fungicide",
-          "method": "Apply copper oxychloride (3 g/L) before blight spreads across field canopy.",
-          "application": "Full foliar coverage",
-          "frequency": "Every 5 days in cool wet weather"
+          "name": "Prophylactic Copper Hydroxide",
+          "method": "Spray copper hydroxide (2 g/L) as a preventive measure when high humidity and cool temperatures persist.",
+          "application": "Foliar spray",
+          "frequency": "Every 5 to 7 days in risk weather",
+          "caution_level": "Low"
         }
       ],
       "chemical_measures": [
         {
-          "name": "Metalaxyl 8% + Mancozeb 64% WP",
-          "active_ingredient": "Metalaxyl + Mancozeb",
-          "dosage": "2.5 g per liter",
-          "safety_precautions": "Wear full PPE. Systemic protectant. Comply with strict harvest withdrawal intervals.",
+          "name": "Cymoxanil 8% + Mancozeb 64% WP",
+          "active_ingredient": "Cymoxanil + Mancozeb",
+          "dosage": "2.0 - 2.5 g per liter",
+          "safety_precautions": "Apply immediately at first sign of disease. Observe 14-day PHI.",
           "caution_level": "High"
         }
       ],
       "prevention_measures": [
-        "Use certified blight-free seed tubers.",
-        "Destroy cull piles before season start.",
-        "Kill haulms (de-haulming) 10-14 days before harvest to protect tubers."
+        "Use certified disease-free seed tubers.",
+        "Perform proper earthing up to protect tubers from fungal spores.",
+        "Kill vines (haulm destruction) 10-14 days before harvest."
       ],
       "sources": [
-        "ICAR-CPRI Late Blight Forecasting System",
-        "FAO Potato Field Guidelines"
+        "ICAR-CPRI Late Blight Warning System",
+        "UC Davis Potato Late Blight Protocol"
       ]
     },
     "potato_healthy": {
       "class_name": "potato_healthy",
-      "display_name": "Healthy Potato",
-      "pathogen": "None (Plant is healthy)",
+      "display_name": "Healthy Potato Plant",
+      "pathogen": "None (Healthy Crop)",
       "base_health_score": 95,
-      "symptoms": "Sturdy green stems, lush foliage without blemishes, regular tuberization.",
+      "symptoms": "Lush green compound leaves, firm stems, free of necrotic spots or rolling.",
       "organic_measures": [
         {
-          "name": "Organic Soil Vigor Management",
-          "method": "Ensure proper earthing up and balanced organic compost / biofertilizer application.",
-          "application": "Soil incorporation",
-          "frequency": "At earthing up"
+          "name": "Neem Cake & Bio-fertilizers",
+          "method": "Apply Neem cake (250 kg/ha) and Azotobacter to soil at planting.",
+          "application": "Soil basal application",
+          "frequency": "At planting",
+          "caution_level": "Low"
         }
       ],
       "chemical_measures": [],
       "prevention_measures": [
-        "Monitor fields routinely for aphids and early blight symptoms.",
-        "Ensure well-drained ridge planting."
+        "Maintain hill height during earthing up.",
+        "Avoid waterlogging in furrows."
       ],
       "sources": [
-        "ICAR-CPRI Good Farming Practices"
+        "ICAR-CPRI Potato Production Manual"
       ]
     }
   }

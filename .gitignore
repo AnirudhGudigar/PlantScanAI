@@ -50,6 +50,5 @@ build/
 .env
 # Local environment snapshot
 requirements-full.txt
-
 # Local model datasets
 datasets/model/

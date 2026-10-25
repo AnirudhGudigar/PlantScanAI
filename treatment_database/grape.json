@@ -1,0 +1,62 @@
+{
+  "crop": "Grape",
+  "diseases": {
+    "grape_black_rot": {
+      "class_name": "grape_black_rot",
+      "display_name": "Grape Black Rot",
+      "pathogen": "Guignardia bidwellii (Fungal)",
+      "base_health_score": 40,
+      "symptoms": "Small reddish-brown circular leaf spots with dark margins; infected berries turn hard, shriveled, and black ('mummies').",
+      "organic_measures": [
+        {
+          "name": "Copper Hydroxide & Sanitation",
+          "method": "Prune and destroy all mummified berries and infected canes. Spray copper hydroxide (2 g/L) starting early spring.",
+          "application": "Foliar canopy spray & pruning",
+          "frequency": "Every 10 to 14 days",
+          "caution_level": "Low"
+        }
+      ],
+      "chemical_measures": [
+        {
+          "name": "Mancozeb 75% WP or Myclobutanil 10% WP",
+          "active_ingredient": "Mancozeb / Myclobutanil",
+          "dosage": "2.0 g / 0.5 g per liter",
+          "safety_precautions": "Spray from pre-bloom through 4-5 weeks post-bloom.",
+          "caution_level": "Moderate"
+        }
+      ],
+      "prevention_measures": [
+        "Remove all mummified fruit clusters during dormant pruning.",
+        "Maintain open canopy trellis systems (VSP) for maximum sunlight exposure."
+      ],
+      "sources": [
+        "Cornell Viticulture Extension Guide",
+        "UC Davis IPM Grape Black Rot"
+      ]
+    },
+    "grape_healthy": {
+      "class_name": "grape_healthy",
+      "display_name": "Healthy Grape Vine",
+      "pathogen": "None (Healthy Crop)",
+      "base_health_score": 95,
+      "symptoms": "Lush green lobed leaves, vigorous cane growth, clean fruit clusters.",
+      "organic_measures": [
+        {
+          "name": "Organic Soil Fertility & Foliar Zinc",
+          "method": "Apply compost and bio-fertilizer. Spray 0.2% zinc sulphate if leaf testing indicates micronutrient need.",
+          "application": "Soil & foliar",
+          "frequency": "Spring",
+          "caution_level": "Low"
+        }
+      ],
+      "chemical_measures": [],
+      "prevention_measures": [
+        "Perform summer leaf pulling around fruit zone for air flow.",
+        "Maintain cover crop in row middles."
+      ],
+      "sources": [
+        "UC Davis Viticulture Manual"
+      ]
+    }
+  }
+}

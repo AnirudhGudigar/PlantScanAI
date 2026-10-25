@@ -1,0 +1,165 @@
+{
+  "crop": "mango",
+  "classes": [
+    "anthracnose",
+    "bacterial_canker",
+    "cutting_weevil",
+    "die_back",
+    "gall_midge",
+    "mango_healthy",
+    "powdery_mildew",
+    "sooty_mould"
+  ],
+  "test_loss": 0.0704936534166336,
+  "test_accuracy": 0.9874686598777771,
+  "weighted_precision": 0.9879970244915627,
+  "weighted_recall": 0.9874686716791979,
+  "weighted_f1_score": 0.9875183584416444,
+  "confusion_matrix": [
+    [
+      54,
+      0,
+      0,
+      0,
+      2,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      50,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      45,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      49,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      49,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      49,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      47,
+      2
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      51
+    ]
+  ],
+  "classification_report": {
+    "anthracnose": {
+      "precision": 1.0,
+      "recall": 0.9642857142857143,
+      "f1-score": 0.9818181818181818,
+      "support": 56.0
+    },
+    "bacterial_canker": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 50.0
+    },
+    "cutting_weevil": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 45.0
+    },
+    "die_back": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 49.0
+    },
+    "gall_midge": {
+      "precision": 0.9423076923076923,
+      "recall": 1.0,
+      "f1-score": 0.9702970297029703,
+      "support": 49.0
+    },
+    "mango_healthy": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 49.0
+    },
+    "powdery_mildew": {
+      "precision": 1.0,
+      "recall": 0.9591836734693877,
+      "f1-score": 0.9791666666666666,
+      "support": 49.0
+    },
+    "sooty_mould": {
+      "precision": 0.9622641509433962,
+      "recall": 0.9807692307692307,
+      "f1-score": 0.9714285714285714,
+      "support": 52.0
+    },
+    "accuracy": 0.9874686716791979,
+    "macro avg": {
+      "precision": 0.988071480406386,
+      "recall": 0.9880298273155417,
+      "f1-score": 0.9878388062020488,
+      "support": 399.0
+    },
+    "weighted avg": {
+      "precision": 0.9879970244915627,
+      "recall": 0.9874686716791979,
+      "f1-score": 0.9875183584416444,
+      "support": 399.0
+    }
+  },
+  "weights_path": "D:\\Sagarnag\\major project\\pgpt\\PlantScanAI\\ml\\weights\\mango\\mango_mobilenetv2.keras",
+  "tflite_path": "D:\\Sagarnag\\major project\\pgpt\\PlantScanAI\\ml\\weights\\mango\\mango_model.tflite"
+}

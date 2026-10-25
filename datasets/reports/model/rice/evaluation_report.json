@@ -1,0 +1,119 @@
+{
+  "crop": "rice",
+  "classes": [
+    "bacterial_leaf_blight",
+    "brown_spot",
+    "healthy_rice_leaf",
+    "leaf_blast",
+    "leaf_scald",
+    "sheath_blight"
+  ],
+  "test_loss": 0.7966948747634888,
+  "test_accuracy": 0.692105233669281,
+  "weighted_precision": 0.6924960046878329,
+  "weighted_recall": 0.6921052631578948,
+  "weighted_f1_score": 0.6906674206034014,
+  "confusion_matrix": [
+    [
+      40,
+      1,
+      0,
+      12,
+      11,
+      2
+    ],
+    [
+      1,
+      54,
+      2,
+      6,
+      4,
+      2
+    ],
+    [
+      0,
+      7,
+      53,
+      0,
+      0,
+      1
+    ],
+    [
+      10,
+      10,
+      1,
+      29,
+      5,
+      3
+    ],
+    [
+      5,
+      6,
+      1,
+      7,
+      43,
+      8
+    ],
+    [
+      1,
+      2,
+      3,
+      4,
+      2,
+      44
+    ]
+  ],
+  "classification_report": {
+    "bacterial_leaf_blight": {
+      "precision": 0.7017543859649122,
+      "recall": 0.6060606060606061,
+      "f1-score": 0.6504065040650406,
+      "support": 66.0
+    },
+    "brown_spot": {
+      "precision": 0.675,
+      "recall": 0.782608695652174,
+      "f1-score": 0.7248322147651006,
+      "support": 69.0
+    },
+    "healthy_rice_leaf": {
+      "precision": 0.8833333333333333,
+      "recall": 0.8688524590163934,
+      "f1-score": 0.8760330578512396,
+      "support": 61.0
+    },
+    "leaf_blast": {
+      "precision": 0.5,
+      "recall": 0.5,
+      "f1-score": 0.5,
+      "support": 58.0
+    },
+    "leaf_scald": {
+      "precision": 0.6615384615384615,
+      "recall": 0.6142857142857143,
+      "f1-score": 0.6370370370370371,
+      "support": 70.0
+    },
+    "sheath_blight": {
+      "precision": 0.7333333333333333,
+      "recall": 0.7857142857142857,
+      "f1-score": 0.7586206896551724,
+      "support": 56.0
+    },
+    "accuracy": 0.6921052631578948,
+    "macro avg": {
+      "precision": 0.6924932523616733,
+      "recall": 0.6929202934548623,
+      "f1-score": 0.6911549172289316,
+      "support": 380.0
+    },
+    "weighted avg": {
+      "precision": 0.6924960046878329,
+      "recall": 0.6921052631578948,
+      "f1-score": 0.6906674206034014,
+      "support": 380.0
+    }
+  },
+  "weights_path": "D:\\Sagarnag\\major project\\pgpt\\PlantScanAI\\ml\\weights\\rice\\rice_mobilenetv2.keras",
+  "tflite_path": "D:\\Sagarnag\\major project\\pgpt\\PlantScanAI\\ml\\weights\\rice\\rice_model.tflite"
+}

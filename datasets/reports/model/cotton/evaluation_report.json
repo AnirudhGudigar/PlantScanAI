@@ -1,0 +1,81 @@
+{
+  "crop": "cotton",
+  "classes": [
+    "bacterial_blight",
+    "cotton_healthy",
+    "curl_virus",
+    "fusarium_wilt"
+  ],
+  "test_loss": 0.2219253033399582,
+  "test_accuracy": 0.949999988079071,
+  "weighted_precision": 0.9500557792561469,
+  "weighted_recall": 0.95,
+  "weighted_f1_score": 0.9496123162330751,
+  "confusion_matrix": [
+    [
+      39,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      49,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      39,
+      2
+    ],
+    [
+      3,
+      1,
+      0,
+      25
+    ]
+  ],
+  "classification_report": {
+    "bacterial_blight": {
+      "precision": 0.9285714285714286,
+      "recall": 0.975,
+      "f1-score": 0.9512195121951219,
+      "support": 40.0
+    },
+    "cotton_healthy": {
+      "precision": 0.9607843137254902,
+      "recall": 0.98,
+      "f1-score": 0.9702970297029703,
+      "support": 50.0
+    },
+    "curl_virus": {
+      "precision": 0.975,
+      "recall": 0.9512195121951219,
+      "f1-score": 0.9629629629629629,
+      "support": 41.0
+    },
+    "fusarium_wilt": {
+      "precision": 0.9259259259259259,
+      "recall": 0.8620689655172413,
+      "f1-score": 0.8928571428571429,
+      "support": 29.0
+    },
+    "accuracy": 0.95,
+    "macro avg": {
+      "precision": 0.9475704170557112,
+      "recall": 0.9420721194280908,
+      "f1-score": 0.9443341619295494,
+      "support": 160.0
+    },
+    "weighted avg": {
+      "precision": 0.9500557792561469,
+      "recall": 0.95,
+      "f1-score": 0.9496123162330751,
+      "support": 160.0
+    }
+  },
+  "weights_path": "D:\\Sagarnag\\major project\\pgpt\\PlantScanAI\\ml\\weights\\cotton\\cotton_mobilenetv2.keras",
+  "tflite_path": "D:\\Sagarnag\\major project\\pgpt\\PlantScanAI\\ml\\weights\\cotton\\cotton_model.tflite"
+}

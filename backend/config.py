@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Set, Tuple
+from typing import List, Set, Tuple
 
 
 class Settings:
@@ -8,7 +8,6 @@ class Settings:
     API_PREFIX: str = "/api/v1"
     
     # Thresholds
-    # Predictions below this threshold are flagged as 'uncertain'
     CONFIDENCE_THRESHOLD: float = 0.70
     
     # Image constraints
@@ -23,7 +22,7 @@ class Settings:
         "image/png",
         "image/webp",
         "image/bmp",
-        "application/octet-stream",  # Fallback for some clients
+        "application/octet-stream",
     }
     
     # Paths
@@ -32,10 +31,30 @@ class Settings:
     TAXONOMY_PATH: Path = PROJECT_ROOT / "datasets" / "reports" / "model" / "final_class_taxonomy_v2.csv"
     WEIGHTS_DIR: Path = PROJECT_ROOT / "ml" / "weights"
     
+    # Supported crops list
+    SUPPORTED_CROPS: List[str] = [
+        "Apple",
+        "Banana",
+        "Bell pepper",
+        "Cotton",
+        "Grape",
+        "Maize",
+        "Mango",
+        "Potato",
+        "Rice",
+        "Tomato",
+    ]
+
     # Model configuration
     DEFAULT_MODEL_NAME: str = "MobileNetV2-PlantScan-v1"
     IMAGE_INPUT_SIZE: Tuple[int, int] = (224, 224)
     ENABLE_MOCK_FALLBACK: bool = True
+
+    # Security & CORS configuration
+    ENVIRONMENT: str = "development"
+    ENABLE_SIMULATION_HEADERS: bool = True
+    CORS_ORIGINS: List[str] = ["*"]
+    CORS_ALLOW_CREDENTIALS: bool = False
 
 
 settings = Settings()

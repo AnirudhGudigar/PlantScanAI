@@ -25,6 +25,22 @@ class RecommendationResponse(BaseModel):
     sources: List[str] = Field(default_factory=list, description="Literature and extension reference sources")
 
 
+class LesionAnalysis(BaseModel):
+    lesion_detected: bool = Field(False, description="Whether foliar damage/lesion is detected")
+    lesion_count: int = Field(0, description="Count of distinct damaged or necrotic lesion regions")
+    affected_area_percentage: float = Field(0.0, description="Percentage of leaf area affected by lesions")
+    leaf_area_pixels: int = Field(0, description="Total valid leaf pixels segmented")
+    lesion_area_pixels: int = Field(0, description="Total lesion pixels detected inside leaf mask")
+    severity_level: str = Field("None (Healthy)", description="Visual severity category (None, Low, Moderate, Severe)")
+    bounding_boxes: List[Dict[str, int]] = Field(default_factory=list, description="Bounding boxes around lesion patches")
+    overlay_image_base64: Optional[str] = Field(None, description="Base64 image with detected lesions highlighted in red")
+    mask_image_base64: Optional[str] = Field(None, description="Base64 binary mask of detected lesions")
+    method_note: str = Field(
+        "Experimental Computer Vision Morphological & Chromaticity Analysis",
+        description="Methodology and validation disclaimer"
+    )
+
+
 class PredictionResponse(BaseModel):
     status: PredictionStatus = Field(..., description="Prediction status (success, uncertain, unknown, etc.)")
     crop: str = Field(..., description="Detected or targeted crop name (e.g., 'Tomato', 'Unknown')")
@@ -35,8 +51,12 @@ class PredictionResponse(BaseModel):
     plant_part: Optional[str] = Field(default="Leaf", description="Plant part identified (Leaf, Fruit, Stem, Bark)")
     plant_health_score: int = Field(..., ge=0, le=100, description="Estimated Plant Health Score (0 - 100)")
     recommendation: Optional[RecommendationResponse] = Field(None, description="Structured care and treatment advice")
+    lesion_analysis: Optional[LesionAnalysis] = Field(None, description="Detailed foliar lesion analysis and overlay visualization")
     model_version: str = Field(default="MobileNetV2-PlantScan-v1", description="Identifier of the model used")
     inference_time_ms: float = Field(default=0.0, description="Inference latency in milliseconds")
+    crop_detected_automatically: bool = Field(default=False, description="Flag indicating if the crop was automatically identified")
+    crop_confidence: Optional[float] = Field(default=None, description="Confidence of automated crop identification")
+    candidate_crops: List[Dict[str, Any]] = Field(default_factory=list, description="Top crop candidate predictions if auto-detected")
     message: Optional[str] = Field(None, description="Contextual message or diagnosis notes")
 
 

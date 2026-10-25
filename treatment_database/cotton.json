@@ -3,134 +3,126 @@
   "diseases": {
     "bacterial_blight": {
       "class_name": "bacterial_blight",
-      "display_name": "Cotton Bacterial Blight / Angular Leaf Spot",
+      "display_name": "Cotton Bacterial Blight (Angular Leaf Spot)",
       "pathogen": "Xanthomonas citri pv. malvacearum (Bacterial)",
       "base_health_score": 45,
-      "symptoms": "Angular water-soaked spots restricted by leaf veins, turning brown or black; black lesions on petioles and stems ('black arm').",
+      "symptoms": "Water-soaked angular leaf spots bounded by leaf veins; black lesions on stems ('blackarm') and boll rot.",
       "organic_measures": [
         {
-          "name": "Copper Oxychloride + Pseudomonas fluorescens",
-          "method": "Spray Copper Oxychloride (2.5 g/L) alternated with Pseudomonas fluorescens (5 ml/L).",
+          "name": "Copper Hydroxide Spray",
+          "method": "Spray copper hydroxide (2 g/L) combined with neem leaf extract.",
           "application": "Foliar spray",
-          "frequency": "Every 10 days"
-        },
-        {
-          "name": "Acid Delinting of Cotton Seed (Pre-planting)",
-          "method": "Treat fuzzy cotton seeds with concentrated sulfuric acid (100 ml/kg) to eliminate seed coat bacterial contamination.",
-          "application": "Pre-sowing seed treatment",
-          "frequency": "Once per seed lot"
+          "frequency": "Every 10 days",
+          "caution_level": "Low"
         }
       ],
       "chemical_measures": [
         {
-          "name": "Streptocycline + Copper Oxychloride",
-          "active_ingredient": "Streptocycline 1 g/10 L + COC 50 WP 2.5 g/L",
-          "dosage": "As per local extension prescription",
-          "safety_precautions": "Wear PPE. Apply during morning or evening.",
+          "name": "Streptocycline + Copper Oxychloride 50% WP",
+          "active_ingredient": "Streptomycin + Copper Oxychloride",
+          "dosage": "0.1 g Streptocycline + 2.5 g COC per liter",
+          "safety_precautions": "Follow regulatory guidelines for antibiotic agricultural sprays.",
           "caution_level": "High"
         }
       ],
       "prevention_measures": [
-        "Use certified acid-delinted and treated seeds.",
-        "Remove and burn previous cotton crop stalks (stubble destruction).",
-        "Avoid high plant densities."
+        "Delint seed with concentrated sulfuric acid before sowing.",
+        "Use resistant Bt cotton cultivars.",
+        "Destroy crop residues after harvest."
       ],
       "sources": [
-        "ICAR-Central Institute for Cotton Research (CICR) Nagpur",
-        "Texas A&M Cotton Pathology"
+        "ICAR - Central Institute for Cotton Research (CICR) Advisory",
+        "USDA Cotton Disease Handbook"
       ]
     },
     "curl_virus": {
       "class_name": "curl_virus",
       "display_name": "Cotton Leaf Curl Virus (CLCuV)",
-      "pathogen": "Cotton leaf curl virus (Begomovirus, vectored by Whitefly)",
-      "base_health_score": 30,
-      "symptoms": "Upward or downward leaf curling, vein thickening and enation (leaf-like outgrowths on vein undersides), severe plant stunting.",
+      "pathogen": "Cotton Leaf Curl Virus (Begomovirus / Whitefly Vector)",
+      "base_health_score": 35,
+      "symptoms": "Upward or downward leaf curling, thickened veins, enations (leaf-like outgrowths) on leaf undersides, severe stunting.",
       "organic_measures": [
         {
-          "name": "Yellow Sticky Traps & Whitefly Repellent",
-          "method": "Install yellow sticky traps (15 per acre). Spray neem seed kernel extract (NSKE 5%) or neem oil (5 ml/L).",
-          "application": "Canopy spray & physical trapping",
-          "frequency": "Every 7 days"
-        },
-        {
-          "name": "Border Cropping with Sorghum / Maize",
-          "method": "Plant 2-3 rows of tall sorghum, bajra, or maize as a physical barrier against flying whitefly migration.",
-          "application": "Field boundary cropping",
-          "frequency": "At sowing time"
+          "name": "Whitefly Vector Management",
+          "method": "Install yellow sticky traps (20 traps/acre). Spray neem seed kernel extract (NSKE 5%) or fish oil rosin soap.",
+          "application": "Foliar vector control spray",
+          "frequency": "Every 7 days during vegetative stage",
+          "caution_level": "Low"
         }
       ],
       "chemical_measures": [
         {
-          "name": "Diafenthiuron 50% WP or Spiromesifen 22.9% SC (Vector management)",
-          "active_ingredient": "Diafenthiuron / Spiromesifen",
-          "dosage": "1.0 g/ml per liter",
-          "safety_precautions": "Wear PPE. Target lower leaf surface where nymphs reside. Avoid spraying during honeybee activity.",
-          "caution_level": "High"
+          "name": "Diafenthiuron 50% WP or Afidopyropen 50 g/L DC",
+          "active_ingredient": "Diafenthiuron / Afidopyropen",
+          "dosage": "1.0 g / 1.0 ml per liter",
+          "safety_precautions": "Avoid spraying when beneficial predators (lacewings, ladybugs) are abundant.",
+          "caution_level": "Moderate"
         }
       ],
       "prevention_measures": [
-        "Sow recommended CLCuV-tolerant / resistant Bt cotton hybrids.",
-        "Eradicate weed hosts (e.g., Parthenium, Xanthium, Sida, Abutilon) around fields.",
-        "Complete timely sowing before peak whitefly breeding season."
+        "Plant CLCuV-tolerant hybrids recommended for the region.",
+        "Eradicate weed hosts (e.g. Abutilon, Xanthium) along field margins."
       ],
       "sources": [
-        "ICAR-CICR Cotton Leaf Curl Virus Advisory",
-        "Punjab Agricultural University (PAU) Advisory"
+        "ICAR-CICR CLCuV Management Guidelines",
+        "Punjab Agricultural University (PAU) Cotton Advisory"
       ]
     },
     "fusarium_wilt": {
       "class_name": "fusarium_wilt",
       "display_name": "Cotton Fusarium Wilt",
       "pathogen": "Fusarium oxysporum f. sp. vasinfectum (Soil-borne Fungal)",
-      "base_health_score": 25,
-      "symptoms": "Yellowing and browning along leaf margins, wilting, leaf drop from base upwards, and dark brown discoloration of vascular vascular rings inside the stem.",
+      "base_health_score": 30,
+      "symptoms": "Yellowing and browning of leaf margins, drooping leaves, brown to black vascular discoloration inside lower stem tissue.",
       "organic_measures": [
         {
-          "name": "Trichoderma viride Soil Enrichment",
-          "method": "Apply Trichoderma viride enriched farmyard manure (2.5 kg Trichoderma in 100 kg FYM per acre).",
-          "application": "Soil basal application",
-          "frequency": "At land preparation"
+          "name": "Trichoderma harzianum Soil Application",
+          "method": "Enrich 250 kg FYM with 2.5 kg Trichoderma harzianum per acre and apply to soil at planting.",
+          "application": "Soil incorporation",
+          "frequency": "At sowing and inter-cultivation",
+          "caution_level": "Low"
         }
       ],
       "chemical_measures": [
         {
-          "name": "Carbendazim 50% WP (Soil drenching)",
+          "name": "Carbendazim 50% WP Soil Drench",
           "active_ingredient": "Carbendazim",
-          "dosage": "1.0 g per liter for collar drenching",
-          "safety_precautions": "Wear PPE. Apply around root zone of early symptomatic plants.",
+          "dosage": "2.0 g per liter (drench around base)",
+          "safety_precautions": "Do not drench near open water bodies.",
           "caution_level": "Moderate"
         }
       ],
       "prevention_measures": [
-        "Practice long-term crop rotation with non-host crops like sorghum, maize, or paddy.",
-        "Avoid moving contaminated soil or implements from infested to clean fields.",
-        "Ensure field drainage to reduce root stress."
+        "Grow wilt-resistant cotton cultivars.",
+        "Rotate with non-host crops like sorghum or maize for 3 years.",
+        "Apply neem cake to soil (250 kg/ha)."
       ],
       "sources": [
-        "ICAR-CICR Cotton Wilt Advisory"
+        "ICAR-CICR Soil-borne Disease Protocols"
       ]
     },
     "cotton_healthy": {
       "class_name": "cotton_healthy",
       "display_name": "Healthy Cotton Crop",
-      "pathogen": "None (Plant is healthy)",
+      "pathogen": "None (Healthy Crop)",
       "base_health_score": 95,
-      "symptoms": "Broad green leaves, normal squaring and boll formation, upright growth.",
+      "symptoms": "Deep green palmate leaves, erect main stem, clean squares and bolls without spots or curling.",
       "organic_measures": [
         {
-          "name": "Balanced Micronutrient (Magnesium / Zinc) Spray",
-          "method": "Foliar spray of 1% Magnesium Sulphate during boll development.",
-          "application": "Foliar spray",
-          "frequency": "At squaring & boll filling"
+          "name": "Pheromone Trap & Foliar Nutrition",
+          "method": "Install pink bollworm pheromone traps (4 traps/acre). Spray 1% potassium nitrate for boll development.",
+          "application": "Foliar spray & monitoring",
+          "frequency": "Bi-weekly",
+          "caution_level": "Low"
         }
       ],
       "chemical_measures": [],
       "prevention_measures": [
-        "Maintain regular scouting for early bollworm or sucking pests."
+        "Monitor pest economic threshold levels (ETL).",
+        "Maintain adequate soil irrigation during boll formation."
       ],
       "sources": [
-        "ICAR-CICR Good Agricultural Practices"
+        "ICAR-CICR Cotton IPM Manual"
       ]
     }
   }

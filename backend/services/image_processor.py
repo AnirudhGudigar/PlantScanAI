@@ -4,7 +4,7 @@ from pathlib import Path
 from typing import Optional, Tuple
 import numpy as np
 from PIL import Image, ImageOps, UnidentifiedImageError
-from fastapi import HTTPException, UploadFile, status
+from fastapi import HTTPException, status
 
 from ..config import settings
 
@@ -30,9 +30,6 @@ class ImageProcessor:
 
     @staticmethod
     def validate_and_load_bytes(image_bytes: bytes, filename: Optional[str] = None) -> Image.Image:
-        """
-        Validates size, format, and decodes image bytes into a PIL Image object.
-        """
         if not image_bytes:
             raise ImageValidationError(
                 message="Uploaded file is empty (0 bytes).",
@@ -45,7 +42,6 @@ class ImageProcessor:
                 hint=f"Compress or resize the image to under {settings.MAX_IMAGE_SIZE_MB} MB before uploading.",
             )
 
-        # Check filename extension if provided
         if filename:
             ext = Path(filename).suffix.lower()
             if ext and ext not in settings.ALLOWED_EXTENSIONS:
@@ -54,10 +50,8 @@ class ImageProcessor:
                     hint="Convert your image to JPEG or PNG before uploading.",
                 )
 
-        # Decode using PIL
         try:
             image = Image.open(io.BytesIO(image_bytes))
-            # Force loading image data to detect truncation or corruption early
             image.load()
         except UnidentifiedImageError:
             raise ImageValidationError(
@@ -70,7 +64,6 @@ class ImageProcessor:
                 hint="The image file appears corrupted or truncated. Please take a new photo.",
             )
 
-        # Dimension checks
         width, height = image.size
         min_w, min_h = settings.MIN_IMAGE_DIMENSIONS
         max_w, max_h = settings.MAX_IMAGE_DIMENSIONS
@@ -87,13 +80,11 @@ class ImageProcessor:
                 hint="Downscale or crop the photo before sending.",
             )
 
-        # Handle EXIF orientation tags automatically
         try:
             image = ImageOps.exif_transpose(image)
         except Exception:
             pass
 
-        # Convert palette/RGBA/grayscale to RGB
         if image.mode != "RGB":
             image = image.convert("RGB")
 
@@ -101,9 +92,6 @@ class ImageProcessor:
 
     @classmethod
     def load_from_base64(cls, base64_str: str) -> Image.Image:
-        """
-        Parses a Base64-encoded string (with or without data URI header) into a PIL Image.
-        """
         if not base64_str or not base64_str.strip():
             raise ImageValidationError(
                 message="Base64 image string is empty.",
@@ -129,11 +117,6 @@ class ImageProcessor:
         image: Image.Image,
         target_size: Tuple[int, int] = settings.IMAGE_INPUT_SIZE,
     ) -> np.ndarray:
-        """
-        Resizes and normalizes the PIL Image into a float32 numpy array of shape (1, H, W, 3)
-        with values scaled to [0.0, 1.0].
-        """
         resized = image.resize(target_size, Image.Resampling.BILINEAR)
-        arr = np.array(resized, dtype=np.float32) / 255.0
-        # Add batch dimension: (1, 224, 224, 3)
+        arr = np.array(resized, dtype=np.float32)
         return np.expand_dims(arr, axis=0)

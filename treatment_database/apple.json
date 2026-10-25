@@ -1,0 +1,94 @@
+{
+  "crop": "Apple",
+  "diseases": {
+    "apple_scab": {
+      "class_name": "apple_scab",
+      "display_name": "Apple Scab",
+      "pathogen": "Venturia inaequalis (Fungal)",
+      "base_health_score": 40,
+      "symptoms": "Velvety olive-green spots on leaves turning dark brown/black with distorted leaf curling; corky brown scabs on fruit surface.",
+      "organic_measures": [
+        {
+          "name": "Lime Sulfur / Liquid Copper Spray",
+          "method": "Spray lime sulfur solution (2%) or copper hydroxide (2 g/L) during green tip and pink bud stages.",
+          "application": "Canopy spray",
+          "frequency": "Every 7 to 10 days in wet spring weather",
+          "caution_level": "Low"
+        }
+      ],
+      "chemical_measures": [
+        {
+          "name": "Difenoconazole 25% EC or Captan 50% WP",
+          "active_ingredient": "Difenoconazole / Captan",
+          "dosage": "0.5 ml / 2.5 g per liter",
+          "safety_precautions": "Do not apply lime sulfur within 2 weeks of oil sprays.",
+          "caution_level": "Moderate"
+        }
+      ],
+      "prevention_measures": [
+        "Rake and shred or compost fallen apple leaves in autumn to eliminate overwintering ascocarps.",
+        "Prune trees to open canopy to sunlight and air."
+      ],
+      "sources": [
+        "Cornell University Apple Scab Advisory",
+        "UC Davis IPM Apple Scab"
+      ]
+    },
+    "apple_rust": {
+      "class_name": "apple_rust",
+      "display_name": "Cedar Apple Rust",
+      "pathogen": "Gymnosporangium juniperi-virginianae (Fungal)",
+      "base_health_score": 50,
+      "symptoms": "Bright yellow-orange leaf spots with reddish borders on upper leaf side; tube-like cup structures (aecia) under leaves.",
+      "organic_measures": [
+        {
+          "name": "Sulfur / Potassium Bicarbonate Spray",
+          "method": "Apply wettable sulfur (3 g/L) or potassium bicarbonate (4 g/L) from pink bud through petal fall.",
+          "application": "Foliar canopy spray",
+          "frequency": "Every 7 to 10 days during spring",
+          "caution_level": "Low"
+        }
+      ],
+      "chemical_measures": [
+        {
+          "name": "Myclobutanil 10% WP or Propiconazole 25% EC",
+          "active_ingredient": "Myclobutanil / Propiconazole",
+          "dosage": "0.4 g / 1.0 ml per liter",
+          "safety_precautions": "Follow PHI constraints.",
+          "caution_level": "Moderate"
+        }
+      ],
+      "prevention_measures": [
+        "Remove alternate host red cedar/juniper trees within 500-1000 feet of orchard.",
+        "Plant rust-resistant apple cultivars (e.g., Enterprise, Liberty)."
+      ],
+      "sources": [
+        "Purdue University Extension Cedar Apple Rust"
+      ]
+    },
+    "apple_healthy": {
+      "class_name": "apple_healthy",
+      "display_name": "Healthy Apple Tree",
+      "pathogen": "None (Healthy Crop)",
+      "base_health_score": 95,
+      "symptoms": "Vibrant green intact leaves, strong spur development, clean unblemished fruit.",
+      "organic_measures": [
+        {
+          "name": "Orchard Floor Management & Compost",
+          "method": "Apply 20 kg composted manure per tree. Maintain mulch ring.",
+          "application": "Basal ring application",
+          "frequency": "Annual spring application",
+          "caution_level": "Low"
+        }
+      ],
+      "chemical_measures": [],
+      "prevention_measures": [
+        "Perform annual winter dormant pruning.",
+        "Thin young fruit clusters for high fruit size and quality."
+      ],
+      "sources": [
+        "WSU Tree Fruit Extension Guide"
+      ]
+    }
+  }
+}

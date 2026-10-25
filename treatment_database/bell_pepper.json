@@ -1,0 +1,95 @@
+{
+  "crop": "Bell pepper",
+  "diseases": {
+    "bell_pepper_bacterial_spot": {
+      "class_name": "bell_pepper_bacterial_spot",
+      "display_name": "Bell Pepper Bacterial Spot",
+      "pathogen": "Xanthomonas euvesicatoria (Bacterial)",
+      "base_health_score": 45,
+      "symptoms": "Small green-yellow spots turning brown with greasy margins on leaf undersides; raised warty spots on fruit.",
+      "organic_measures": [
+        {
+          "name": "Copper Hydroxide Spray",
+          "method": "Spray copper hydroxide (2 g/L) combined with neem oil emulsion.",
+          "application": "Foliar spray",
+          "frequency": "Every 7 to 10 days",
+          "caution_level": "Low"
+        }
+      ],
+      "chemical_measures": [
+        {
+          "name": "Streptocycline + Copper Oxychloride",
+          "active_ingredient": "Streptomycin + COC",
+          "dosage": "0.1 g + 2.0 g per liter",
+          "safety_precautions": "Follow agricultural antibiotic guidelines.",
+          "caution_level": "High"
+        }
+      ],
+      "prevention_measures": [
+        "Plant certified disease-free seeds.",
+        "Avoid handling plants when foliage is wet.",
+        "Practice 2-year crop rotation."
+      ],
+      "sources": [
+        "UF/IFAS Pepper Disease Advisory",
+        "UC Davis IPM Pepper Guide"
+      ]
+    },
+    "bell_pepper_leaf_spot": {
+      "class_name": "bell_pepper_leaf_spot",
+      "display_name": "Bell Pepper Cercospora Leaf Spot (Frogeye)",
+      "pathogen": "Cercospora capsici (Fungal)",
+      "base_health_score": 50,
+      "symptoms": "Circular leaf spots with light gray/white centers and dark brown margins resembling frog eyes.",
+      "organic_measures": [
+        {
+          "name": "Potassium Bicarbonate / Bio-agent Spray",
+          "method": "Spray potassium bicarbonate (3 g/L) or Bacillus subtilis (5 ml/L).",
+          "application": "Foliar spray",
+          "frequency": "Every 7 to 10 days",
+          "caution_level": "Low"
+        }
+      ],
+      "chemical_measures": [
+        {
+          "name": "Chlorothalonil 75% WP or Azoxystrobin 23% SC",
+          "active_ingredient": "Chlorothalonil / Azoxystrobin",
+          "dosage": "2.0 g / 1.0 ml per liter",
+          "safety_precautions": "Observe pre-harvest intervals strictly.",
+          "caution_level": "Moderate"
+        }
+      ],
+      "prevention_measures": [
+        "Prune lower leaves touch soil.",
+        "Use drip irrigation under plastic mulch."
+      ],
+      "sources": [
+        "UC Davis IPM Cercospora on Pepper"
+      ]
+    },
+    "bell_pepper_healthy": {
+      "class_name": "bell_pepper_healthy",
+      "display_name": "Healthy Bell Pepper Plant",
+      "pathogen": "None (Healthy Crop)",
+      "base_health_score": 95,
+      "symptoms": "Dark green glossy foliage, sturdy branching, healthy flowers and firm green/red fruit.",
+      "organic_measures": [
+        {
+          "name": "Balanced Organic Nutrition",
+          "method": "Apply compost and vermicompost (2 tons/acre) with calcium foliar spray to prevent blossom end rot.",
+          "application": "Soil & foliar",
+          "frequency": "Monthly",
+          "caution_level": "Low"
+        }
+      ],
+      "chemical_measures": [],
+      "prevention_measures": [
+        "Ensure consistent soil moisture to prevent fruit disorders.",
+        "Stake plants to support heavy fruit load."
+      ],
+      "sources": [
+        "ICAR-IIHR Pepper Cultivation Practices"
+      ]
+    }
+  }
+}
