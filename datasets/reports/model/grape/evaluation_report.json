@@ -1,51 +1,62 @@
 {
-  "crop": "grape",
-  "classes": [
-    "grape_black_rot",
-    "grape_healthy"
-  ],
-  "test_loss": 0.7651572823524475,
-  "test_accuracy": 0.4285714328289032,
-  "weighted_precision": 0.42857142857142855,
-  "weighted_recall": 0.42857142857142855,
-  "weighted_f1_score": 0.42857142857142855,
-  "confusion_matrix": [
-    [
-      3,
-      4
-    ],
-    [
-      4,
-      3
-    ]
-  ],
+  "test_loss": 0.5191289782524109,
+  "test_accuracy": 0.7857142686843872,
+  "weighted_precision": 0.7916666666666667,
+  "weighted_recall": 0.7857142857142857,
+  "weighted_f1": 0.7846153846153846,
+  "macro_precision": 0.7916666666666667,
+  "macro_recall": 0.7857142857142857,
+  "macro_f1": 0.7846153846153847,
   "classification_report": {
     "grape_black_rot": {
-      "precision": 0.42857142857142855,
-      "recall": 0.42857142857142855,
-      "f1-score": 0.42857142857142855,
+      "precision": 0.8333333333333334,
+      "recall": 0.7142857142857143,
+      "f1-score": 0.7692307692307693,
       "support": 7.0
     },
     "grape_healthy": {
-      "precision": 0.42857142857142855,
-      "recall": 0.42857142857142855,
-      "f1-score": 0.42857142857142855,
+      "precision": 0.75,
+      "recall": 0.8571428571428571,
+      "f1-score": 0.8,
       "support": 7.0
     },
-    "accuracy": 0.42857142857142855,
+    "accuracy": 0.7857142857142857,
     "macro avg": {
-      "precision": 0.42857142857142855,
-      "recall": 0.42857142857142855,
-      "f1-score": 0.42857142857142855,
+      "precision": 0.7916666666666667,
+      "recall": 0.7857142857142857,
+      "f1-score": 0.7846153846153847,
       "support": 14.0
     },
     "weighted avg": {
-      "precision": 0.42857142857142855,
-      "recall": 0.42857142857142855,
-      "f1-score": 0.42857142857142855,
+      "precision": 0.7916666666666667,
+      "recall": 0.7857142857142857,
+      "f1-score": 0.7846153846153846,
       "support": 14.0
     }
   },
-  "weights_path": "D:\\Sagarnag\\major project\\pgpt\\PlantScanAI\\ml\\weights\\grape\\grape_mobilenetv2.keras",
-  "tflite_path": "D:\\Sagarnag\\major project\\pgpt\\PlantScanAI\\ml\\weights\\grape\\grape_model.tflite"
+  "confusion_matrix": [
+    [
+      5,
+      2
+    ],
+    [
+      1,
+      6
+    ]
+  ],
+  "crop": "grape",
+  "class_names": [
+    "grape_black_rot",
+    "grape_healthy"
+  ],
+  "num_classes": 2,
+  "image_size": [
+    224,
+    224
+  ],
+  "batch_size": 32,
+  "epochs_requested": 5,
+  "class_weights_used": false,
+  "model": "MobileNetV2",
+  "seed": 42
 }

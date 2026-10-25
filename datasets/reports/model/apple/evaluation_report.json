@@ -1,43 +1,23 @@
 {
-  "crop": "apple",
-  "classes": [
-    "apple_healthy",
-    "apple_rust",
-    "apple_scab"
-  ],
-  "test_loss": 0.8151174187660217,
-  "test_accuracy": 0.5714285969734192,
-  "weighted_precision": 0.6330266955266955,
-  "weighted_recall": 0.5714285714285714,
-  "weighted_f1_score": 0.5884948384948385,
-  "confusion_matrix": [
-    [
-      7,
-      3,
-      0
-    ],
-    [
-      1,
-      2,
-      2
-    ],
-    [
-      3,
-      3,
-      7
-    ]
-  ],
+  "test_loss": 0.6227036714553833,
+  "test_accuracy": 0.6428571343421936,
+  "weighted_precision": 0.6904761904761905,
+  "weighted_recall": 0.6428571428571429,
+  "weighted_f1": 0.6474953617810761,
+  "macro_precision": 0.6407407407407407,
+  "macro_recall": 0.6794871794871794,
+  "macro_f1": 0.6359307359307359,
   "classification_report": {
     "apple_healthy": {
-      "precision": 0.6363636363636364,
+      "precision": 0.7,
       "recall": 0.7,
-      "f1-score": 0.6666666666666666,
+      "f1-score": 0.7,
       "support": 10.0
     },
     "apple_rust": {
-      "precision": 0.25,
-      "recall": 0.4,
-      "f1-score": 0.3076923076923077,
+      "precision": 0.4444444444444444,
+      "recall": 0.8,
+      "f1-score": 0.5714285714285714,
       "support": 5.0
     },
     "apple_scab": {
@@ -46,20 +26,51 @@
       "f1-score": 0.6363636363636364,
       "support": 13.0
     },
-    "accuracy": 0.5714285714285714,
+    "accuracy": 0.6428571428571429,
     "macro avg": {
-      "precision": 0.5547138047138047,
-      "recall": 0.5461538461538461,
-      "f1-score": 0.5369075369075369,
+      "precision": 0.6407407407407407,
+      "recall": 0.6794871794871794,
+      "f1-score": 0.6359307359307359,
       "support": 28.0
     },
     "weighted avg": {
-      "precision": 0.6330266955266955,
-      "recall": 0.5714285714285714,
-      "f1-score": 0.5884948384948385,
+      "precision": 0.6904761904761905,
+      "recall": 0.6428571428571429,
+      "f1-score": 0.6474953617810761,
       "support": 28.0
     }
   },
-  "weights_path": "D:\\Sagarnag\\major project\\pgpt\\PlantScanAI\\ml\\weights\\apple\\apple_mobilenetv2.keras",
-  "tflite_path": "D:\\Sagarnag\\major project\\pgpt\\PlantScanAI\\ml\\weights\\apple\\apple_model.tflite"
+  "confusion_matrix": [
+    [
+      7,
+      2,
+      1
+    ],
+    [
+      0,
+      4,
+      1
+    ],
+    [
+      3,
+      3,
+      7
+    ]
+  ],
+  "crop": "apple",
+  "class_names": [
+    "apple_healthy",
+    "apple_rust",
+    "apple_scab"
+  ],
+  "num_classes": 3,
+  "image_size": [
+    224,
+    224
+  ],
+  "batch_size": 32,
+  "epochs_requested": 8,
+  "class_weights_used": false,
+  "model": "MobileNetV2",
+  "seed": 42
 }
